@@ -1,29 +1,38 @@
-const container = document.getElementById('app');
+const container = document.getElementById("app");
 
 function createImage(src) {
-    const image = document.createElement('img');
-    image.src = src;
-    container.appendChild(image);
+  const image = document.createElement("img"); //Create an image element.
+  image.src = src;
+  container.appendChild(image); //Append the image element to the container.
 }
 
 async function getImages() {
-    const url = 'https://image-feed-api.vercel.app/api/images';
+  const url = "https://image-feed-api.vercel.app/api/images";
 
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
+  try {
+    const response = await fetch(url);
 
-        for (image of data) {
-            console.log(data.image_url)
-        }
+    // This naming is confusing because the object also has a property called "data"
+    // const data = await response.json();
 
-       // for(let i = 0; 0 < data.length; i++);
+    // responseData contains the following properties:
+    // data: []
+    // page: 1
+    // total_pages: 20
+    const responseData = await response.json();
 
-        console.log(data);
-
-    } catch {
-        console.log('Error fetching images');
+    //The data property is an array of images.
+    for (const image of responseData.data) {
+      createImage(image.image_url); //Create an image element for each image.
+      console.log(image.image_url);
     }
+
+    // for(let i = 0; 0 < data.length; i++);
+
+    console.log(data);
+  } catch {
+    console.log("Error fetching images");
+  }
 }
 
 getImages();
