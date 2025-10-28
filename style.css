@@ -2,3 +2,7 @@
   background-color: #fffbac;
   padding: 30px;
 }
+
+img {
+    border-radius: 16px;
+}

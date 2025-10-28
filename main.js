@@ -1,5 +1,3 @@
-import './style.css'
-
 const container = document.getElementById('app');
 
 function createImage(src) {
