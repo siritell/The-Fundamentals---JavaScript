@@ -1,8 +1,11 @@
 :root {
-  background-color: #fffbac;
+  background-color: #faf6b9;
+  color: rgb(0, 0, 0);
   padding: 30px;
+  font-family: Arial, sans-serif;
+
 }
 
 img {
-    border-radius: 16px;
+    border-radius: 8px;
 }

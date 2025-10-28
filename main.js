@@ -6,17 +6,24 @@ function createImage(src) {
     container.appendChild(image);
 }
 
-// function init() {
-//     fetch('https://image-feed-api.vercel.app/api/images/e8cd3ffd-794c-4ec6-b375-7788dbb14275')
-//     .then(resp => resp.json())
-//     .then(json => createImage(json.image_url))
-// }
+async function getImages() {
+    const url = 'https://image-feed-api.vercel.app/api/images';
 
-function getImages() {
-    fetch('https://image-feed-api.vercel.app/api/images')
-    .then(resp => resp.json())
-    .then(json => createImage(json.image_url))
-    console.log();
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        for (image of data) {
+            console.log(data.image_url)
+        }
+
+       // for(let i = 0; 0 < data.length; i++);
+
+        console.log(data);
+
+    } catch {
+        console.log('Error fetching images');
+    }
 }
 
 getImages();
