@@ -1,11 +1,13 @@
 :root {
-  background-color: #faf6b9;
-  color: rgb(0, 0, 0);
+  background-color: #ffffff;
+  color: rgb(223, 3, 3);
   padding: 30px;
   font-family: "Parkinsans", sans-serif;
 }
 
+
+
 img {
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 4px;
 }
