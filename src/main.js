@@ -26,12 +26,10 @@ async function getImages() {
       createImage(image.image_url); //Create an image element for each image.
       console.log(image.image_url);
     }
+  }
 
     // for(let i = 0; 0 < data.length; i++);
 
-  } catch {
-    console.log("Error fetching images");
-  }
 
 // function likeImage() {
 //     return { "success": true, "likes_count": 6 }
