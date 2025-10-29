@@ -55,24 +55,22 @@
 
 .top-likes {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 equal boxes in a row */
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
 }
 
-/* Each top-like box */
 .top-like {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   padding: 10px;
-  background-color: #fff; /* fallback background */
+  background-color: #fff;
   border-radius: 8px;
   border-color: #df0303;
   border-width: 2px solid;
   gap: 10px;
 }
 
-/* Rank badge */
 .top-like .rank {
   font-size: 2em;
   font-weight: bold;
@@ -99,7 +97,7 @@
 
 .top-like .like-count { 
   font-size: 1.2em;
-  margin-left: auto; /* pushes it to the right */
+  margin-left: auto;
   color: #000;
 }
 
