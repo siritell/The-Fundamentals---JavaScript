@@ -1,6 +1,6 @@
 :root {
   background-color: #ffffff;
-  color: rgb(223, 3, 3);
+  color: #df0303;
   margin: 0.5em;
   font-family: "Parkinsans", sans-serif;
 }
@@ -19,10 +19,10 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-width: 150px;
-  height: 100px;
+  min-width: 120px;
+  height: 60px;
   border-radius: 8px;
-  padding: 10px 15px;
+  padding: 10px 10px;
   color: #ffffff;
 }
 
@@ -33,8 +33,7 @@
 }
 
 .stat-number {
-  font-size: 1.8em;
-  font-weight: bold;
+  font-size: 1.5em;
   margin: 0;
   align-self: flex-end;
 }
@@ -42,6 +41,68 @@
 .stat-box.image { background-color: #bc7777; }
 .stat-box.comments { background-color: #a84b4b; }
 .stat-box.likes { background-color: #921313; }
+
+.top-likes-container {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.top-likes-container h3 {
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  text-align: left;
+}
+
+.top-likes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal boxes in a row */
+  gap: 10px;
+}
+
+/* Each top-like box */
+.top-like {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  background-color: #fff; /* fallback background */
+  border-radius: 8px;
+  border-color: #df0303;
+  border-width: 2px solid;
+  gap: 10px;
+}
+
+/* Rank badge */
+.top-like .rank {
+  font-size: 2em;
+  font-weight: bold;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  color: #fff;
+}
+
+.top-like.gold .rank { background-color: gold; color: #fff; }
+.top-like.silver .rank { background-color: silver; color: #fff; }
+.top-like.bronze .rank { background-color: #cd7f32; color: #fff; }
+
+.top-like img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.top-like .like-count { 
+  font-size: 1.2em;
+  margin-left: auto; /* pushes it to the right */
+  color: #000;
+}
+
 
 #app {
   display: grid;
