@@ -30,10 +30,21 @@ img {
   padding: 4px;
 }
 
-.article-card {
-  display: inline-block;
+/* Grid container for images only */
+#app {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 images per row on desktop */
+  grid-auto-rows: auto;
+  gap: 10px; /* spacing between images */
+  padding: 10px;
 }
 
+/* Each card */
+.article-card {
+  width: 100%;
+}
+
+/* Images */
 .article-image {
   width: 100%;
   height: auto;
@@ -41,17 +52,18 @@ img {
   object-fit: cover;
 }
 
+/* Mobile stacking */
 @media (max-width: 600px) {
+  #app {
+    grid-template-columns: 1fr; /* stack images */
+  }
+
   .article-card {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
   .article-image {
     width: 100%;
-    max-width: 100%;
-    margin-bottom: .5em;
+    margin-bottom: 1em;
   }
 }
