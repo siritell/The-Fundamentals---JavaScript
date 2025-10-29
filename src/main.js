@@ -1,4 +1,7 @@
 import "./style.css";
+import { getAllImages } from "./api.js";
+import { getOneImage } from "./api.js";
+
 const container = document.getElementById("app");
 
 function createImage(src) {
@@ -16,20 +19,10 @@ function createImage(src) {
 async function getImages() {
   const url = "https://image-feed-api.vercel.app/api/images";
 
-  try {
-    const response = await fetch(url);
-
-    // This naming is confusing because the object also has a property called "data"
-    // const data = await response.json();
-
-    // responseData contains the following properties:
-    // data: []
-    // page: 1
-    // total_pages: 20
-    const responseData = await response.json();
+  const dataImages = await getAllImages();
 
     //The data property is an array of images.
-    for (const image of responseData.data) {
+    for (const image of gallery) {
       createImage(image.image_url); //Create an image element for each image.
       console.log(image.image_url);
     }
@@ -41,8 +34,9 @@ async function getImages() {
     console.log("Error fetching images");
   }
 }
+const data = await getAllImages();
 
-getImages();
+console.log(data);
 
 // function likeImage() {
 //     return { "success": true, "likes_count": 6 }
