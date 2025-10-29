@@ -6,7 +6,7 @@ export const getAllImages = async () => {
         const response = await fetch(url);
         const galleryData = await response.json();
         
-        return galleryData;
+        return galleryData.data;
     } catch {
         console.log("Couldn't get images");
     }

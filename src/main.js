@@ -16,21 +16,16 @@ function createImage(src) {
   container.appendChild(card);
 }
 
-async function getImages() {
-  const url = "https://image-feed-api.vercel.app/api/images";
+async function createImages() {
+  const gallery = await getAllImages()
 
-  const dataImages = await getAllImages();
+  console.log(gallery)
 
-    //The data property is an array of images.
+
     for (const image of gallery) {
       createImage(image.image_url); //Create an image element for each image.
       console.log(image.image_url);
     }
   }
 
-    // for(let i = 0; 0 < data.length; i++);
-
-
-// function likeImage() {
-//     return { "success": true, "likes_count": 6 }
-// }
+ createImages()
