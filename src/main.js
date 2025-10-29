@@ -3,12 +3,12 @@ import { getAllImages, postComment, postLike, getOneImage } from "./api.js";
 
 const container = document.getElementById("app");
 
-function createImage(imageurl, id) {
+function createImage(src, id) {
   const card = document.createElement("div");
   card.classList.add("article-card");
 
   const image = document.createElement("img");
-  image.src = imageurl;
+  image.src = src;
   image.classList.add("article-image");
   card.appendChild(image);
 
