@@ -29,14 +29,9 @@ async function getImages() {
 
     // for(let i = 0; 0 < data.length; i++);
 
-    console.log(data);
   } catch {
     console.log("Error fetching images");
   }
-}
-const data = await getAllImages();
-
-console.log(data);
 
 // function likeImage() {
 //     return { "success": true, "likes_count": 6 }
