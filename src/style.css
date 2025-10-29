@@ -99,27 +99,42 @@
   width: 100%;
 }
 .gallery-item {
+  position: relative;
   padding: 16px;
   height: 300px;
   display: flex;
   object-fit: cover;
   border-radius: 8px;
-  justify-content: flex-end;
   align-items: flex-end;
   gap: 16px;
 
   & .image-buttons {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    opacity: 0;
     display: flex;
     gap: 8px;
   }
-  & .like-comment-button {
-    background-color: #1A1A1A;
-    color: #FFFFFF;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+}
+
+.like-comment-button {
+  background-color: rgba(26, 26, 26, 0.5);
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(26, 26, 26, 0.8);
   }
+}
+
+.gallery-item:hover .image-buttons {
+  opacity: 1;
+  bottom: 16px;
+  transition: all 0.3s ease;
 }
 
 @media (max-width: 600px) {
