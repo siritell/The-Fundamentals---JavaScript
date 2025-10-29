@@ -1,0 +1,11 @@
+:root {
+  background-color: #faf6b9;
+  color: rgb(0, 0, 0);
+  padding: 30px;
+  font-family: "Parkinsans", sans-serif;
+}
+
+img {
+  border-radius: 8px;
+  padding: 4px;
+}
