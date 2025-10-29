@@ -14,6 +14,12 @@ async function createImages(pageNumber) {
     galleryItem.classList.add("gallery-item");
     container.appendChild(galleryItem)
     galleryItem.style.backgroundImage = `url(${image.image_url})`;
+    galleryItem.innerHTML = `
+        <div class="image-buttons">
+          <button class="like-comment-button">Like</button>
+          <button class="like-comment-button">Comment</button>
+        </div>
+      `
     
   }
 }
