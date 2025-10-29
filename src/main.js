@@ -2,9 +2,15 @@ import "./style.css";
 const container = document.getElementById("app");
 
 function createImage(src) {
-  const image = document.createElement("img"); //Create an image element.
+  const card = document.createElement("div");
+  card.classList.add("article-card");
+
+  const image = document.createElement("img");
   image.src = src;
-  container.appendChild(image); //Append the image element to the container.
+  image.classList.add("article-image");
+
+  card.appendChild(image);
+  container.appendChild(card);
 }
 
 async function getImages() {
