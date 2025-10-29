@@ -1,8 +1,98 @@
 :root {
-  background-color: #ffffff;
-  color: rgb(223, 3, 3);
-  margin: .5em;
+  background-color: #000000;
+  color: #ffffff;
+  margin: 0.5em;
   font-family: "Parkinsans", sans-serif;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 20px 20px 20px auto;
+  padding: 10px;
+  gap: 10px;
+  max-width: 800px;
+}
+
+.stat-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 150px;
+  height: 100px;
+  border-radius: 8px;
+  padding: 10px 15px;
+  color: #fff;
+}
+
+.stat-label {
+  font-size: 0.9em;
+  margin: 0;
+  align-self: flex-start;
+}
+
+.stat-number {
+  font-size: 1.5em;
+  margin: 0;
+  align-self: flex-end;
+}
+
+.stat-box.image   { background-color: #0d2e17; }
+.stat-box.comments{ background-color: #2c0b3c; }
+.stat-box.likes   { background-color: #162846; }
+
+.top-likes-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 20px auto;
+  padding: 0 10px;
+}
+
+.top-likes {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.top-like {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 15px 40px;
+  gap: 20px;
+  color: #ffffff;
+  border-radius: 8px;
+}
+
+.top-like.gold   { background-color: #1f3153; }
+.top-like.silver { background-color: #1f3153; }
+.top-like.bronze { background-color: #1f3153; }
+
+.top-like .rank {
+  font-size: 2.5em;
+  font-weight: bold;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  color: #fff;
+}
+
+.top-like img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.top-like .like-count {
+  font-size: 1.5em;
+  margin-left: auto;
+  color: #ffffff;
 }
 
 #app {
@@ -22,40 +112,61 @@
   height: auto;
   display: block;
   object-fit: cover;
+  border-radius: 8px;
+  padding: 0.1em;
 }
 
-
-img {
-  border-radius: 12px;
-  padding: 4px;
-}
-
-/* Grid container for images only */
-#app {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 images per row on desktop */
-  grid-auto-rows: auto;
-  gap: 10px; /* spacing between images */
-  padding: 10px;
-}
-
-/* Each card */
-.article-card {
-  width: 100%;
-}
-
-/* Images */
-.article-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
-
-/* Mobile stacking */
 @media (max-width: 600px) {
+  .stats-container {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 8px;
+    margin: 0 auto;
+  }
+
+  .stat-box {
+    min-width: 90px;
+    height: 70px;
+    padding: 6px 8px;
+    text-align: center;
+  }
+
+  .stat-label {
+    font-size: 0.75em;
+  }
+
+  .stat-number {
+    font-size: 1.3em;
+  }
+
+  .top-likes {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+
+  .top-like {
+    width: 90%;
+  }
+
+  .top-like img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .top-like .rank {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5em;
+  }
+
+  .top-like .like-count {
+    font-size: 1em;
+  }
+
   #app {
-    grid-template-columns: 1fr; /* stack images */
+    grid-template-columns: 1fr;
   }
 
   .article-card {
