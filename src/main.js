@@ -4,6 +4,25 @@ import { getAllImages, postComment, postLike, getOneImage } from "./api.js";
 
 const container = document.getElementById("gallery-container");
 
+/* ALEX modal elements + function */
+const modal = document.getElementById("image-modal");
+const modalImg = document.getElementById("modal-img");
+const closeModal = document.getElementById("close-modal");
+
+function openModal(src) {
+  modalImg.src = src;
+  modal.classList.remove("hidden");
+}
+
+closeModal.addEventListener("click", () => {
+  modal.classList.add("hidden");
+});
+
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) modal.classList.add("hidden");
+});
+/* ALEX END OF MODAL CODE */
+
 function createImage(src, id) {
   const card = document.createElement("div");
   card.classList.add("gallery-item");
@@ -11,6 +30,10 @@ function createImage(src, id) {
   const image = document.createElement("img");
   image.src = src;
   image.classList.add("article-image");
+
+  /* ALEX open modal on image click */
+  image.addEventListener("click", () => openModal(src));
+
   card.appendChild(image);
 
   const likeButton = document.createElement("button");
@@ -50,24 +73,4 @@ async function createImages() {
 
 createImages();
 
-/* Alex >>>> MODAL FUNCTIONS
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-*/
-
-const modal = document.getElementById("image-modal");
-const modalImg = document.getElementById("modal-img");
-const closeModal = document.getElementById("close-modal");
-
-function openModal(src) {
-  modalImg.src = src;
-  modal.classList.remove("hidden");
-}
-
-closeModal.addEventListener("click", () => {
-  modal.classList.add("hidden");
-});
-
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) modal.classList.add("hidden");
-});
 
