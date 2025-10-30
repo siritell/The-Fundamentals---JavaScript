@@ -49,3 +49,25 @@ async function createImages() {
 }
 
 createImages();
+
+/* Alex >>>> MODAL FUNCTIONS
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+*/
+
+const modal = document.getElementById("image-modal");
+const modalImg = document.getElementById("modal-img");
+const closeModal = document.getElementById("close-modal");
+
+function openModal(src) {
+  modalImg.src = src;
+  modal.classList.remove("hidden");
+}
+
+closeModal.addEventListener("click", () => {
+  modal.classList.add("hidden");
+});
+
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) modal.classList.add("hidden");
+});
+
