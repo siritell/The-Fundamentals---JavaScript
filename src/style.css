@@ -201,3 +201,42 @@
     margin-bottom: 1em;
   }
 }
+
+
+/******* ALEX MODAL CSS CONTRIBUTIONS  ******************/
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  width: 300px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+/* When URL has #modal-window */
+:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+/******* ALEX MODAL CSS CONTRIBUTIONS  ******************/
