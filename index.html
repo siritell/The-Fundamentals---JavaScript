@@ -6,52 +6,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wdth@1,18..144,87..112&family=Parkinsans:wght@300..800&display=swap" rel="stylesheet"> 
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wdth@1,18..144,87..112&family=Parkinsans:wght@300..800&display=swap"
+    rel="stylesheet">
   <title>The Fundamentals - JavaScript Part 2</title>
 </head>
 
 <body>
-  <h1>Frmewrk</h1>
-
-  <div class="stats-container">
-    <div class="stat-box image">
+  <div class="container">
+    <h1>Frmewrk</h1>
+    <div class="stats-container">
+      <div class="stat-box image">
         <p class="stat-label">Images</p>
         <p class="stat-number" id="imageCount">0</p>
-    </div>
-    <div class="stat-box comments">
+      </div>
+      <div class="stat-box comments">
         <p class="stat-label">Comments</p>
         <p class="stat-number" id="commentCount">0</p>
-    </div>
-    <div class="stat-box likes">
+      </div>
+      <div class="stat-box likes">
         <p class="stat-label">Likes</p>
-      <p class="stat-number" id="likeCount">0</p>
-    </div>
-  </div>
-  
-  <h3>Top Likes</h3>
-  
-  <div class="top-likes-container">
-    <div class="top-likes">
-      <div class="top-like gold">
-        <span class="rank">1</span>
-        <img src="image1.jpg" alt="Top liked image 1">
-        <span class="like-count" id="topLike1">0</span>
-      </div>
-      <div class="top-like silver">
-        <span class="rank">2</span>
-        <img src="image2.jpg" alt="Top liked image 2">
-        <span class="like-count" id="topLike2">0</span>
-      </div>
-      <div class="top-like bronze">
-        <span class="rank">3</span>
-        <img src="image3.jpg" alt="Top liked image 3">
-        <span class="like-count" id="topLike3">0</span>
+        <p class="stat-number" id="likeCount">0</p>
       </div>
     </div>
+    <h3>Top Likes</h3>
+    <div class="top-likes-container">
+      <div class="top-likes">
+        <div class="top-like gold">
+          <span class="rank">1</span>
+          <img src="image1.jpg" alt="Top liked image 1">
+          <span class="like-count" id="topLike1">0</span>
+        </div>
+        <div class="top-like silver">
+          <span class="rank">2</span>
+          <img src="image2.jpg" alt="Top liked image 2">
+          <span class="like-count" id="topLike2">0</span>
+        </div>
+        <div class="top-like bronze">
+          <span class="rank">3</span>
+          <img src="image3.jpg" alt="Top liked image 3">
+          <span class="like-count" id="topLike3">0</span>
+        </div>
+      </div>
+    </div>
+   
+    <h3>Gallery</h3>
+    <div id="gallery-container">
+      <!-- ALEX CONTRIBUTIONS ON MODALS ONLY-->
+      <a href="#modal-window" class="open-btn">OPEN IMAGE</a>
+    </div>
+
+     <!-- ALEX CONTRIBUTIONS ON MODALS ONLY-->
+    <div id="modal-window" class="modal">
+      <div class="modal-content">
+        <a href="#" class="close-btn">&times;</a>
+        <h2>Pure CSS Modal</h2>
+        <p>HERE THE IMAGE GOES BIGGER</p>
+      </div>
+    </div>
   </div>
+
   
-  <h3>Gallery</h3>
-  <div id="app"></div>
+
+
 
   <script type="module" src="/src/main.js"></script>
 </body>

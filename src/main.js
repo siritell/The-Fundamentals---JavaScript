@@ -1,49 +1,51 @@
+import "./reset.css";
 import "./style.css";
-const container = document.getElementById("app");
+import { getAllImages, postComment, postLike, getOneImage } from "./api.js";
 
-function createImage(src) {
+const container = document.getElementById("gallery-container");
+
+function createImage(src, id) {
   const card = document.createElement("div");
-  card.classList.add("article-card");
+  card.classList.add("gallery-item");
 
   const image = document.createElement("img");
   image.src = src;
   image.classList.add("article-image");
-
   card.appendChild(image);
+
+  const likeButton = document.createElement("button");
+  const imageBtnCont = document.createElement("div");
+  imageBtnCont.classList.add("image-buttons");
+
+  likeButton.innerHTML = "<img src='./src/icons/like.svg' alt='like-button' />";
+  likeButton.classList.add("like-comment-button");
+  likeButton.addEventListener("click", () => postLike(id));
+
+  const commentButton = document.createElement("button");
+  let commenter_name = "Test";
+  let comment = "Test comment";
+  commentButton.innerHTML =
+    "<img src='./src/icons/comment.svg' alt='comment-button' />";
+  commentButton.classList.add("like-comment-button");
+  commentButton.addEventListener("click", () =>
+    postComment(id, commenter_name, comment)
+  );
+  imageBtnCont.appendChild(likeButton);
+  imageBtnCont.appendChild(commentButton);
+  card.appendChild(imageBtnCont);
   container.appendChild(card);
 }
 
-async function getImages() {
-  const url = "https://image-feed-api.vercel.app/api/images";
+async function createImages() {
+  const gallery = await getAllImages();
 
-  try {
-    const response = await fetch(url);
+  console.log(gallery);
 
-    // This naming is confusing because the object also has a property called "data"
-    // const data = await response.json();
-
-    // responseData contains the following properties:
-    // data: []
-    // page: 1
-    // total_pages: 20
-    const responseData = await response.json();
-
-    //The data property is an array of images.
-    for (const image of responseData.data) {
-      createImage(image.image_url); //Create an image element for each image.
-      console.log(image.image_url);
-    }
-
-    // for(let i = 0; 0 < data.length; i++);
-
-    console.log(data);
-  } catch {
-    console.log("Error fetching images");
+  for (const image of gallery) {
+    createImage(image.image_url, image.id);
+    //Create an image element for each image.
+    console.log(image.image_url);
   }
 }
 
-getImages();
-
-// function likeImage() {
-//     return { "success": true, "likes_count": 6 }
-// }
+createImages();
