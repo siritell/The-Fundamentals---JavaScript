@@ -264,10 +264,16 @@ h3 {
 }
 .btn_load_more button {
   background: #fff;
-    color: #000;
-    margin-left: 40%;
-    border-radius: 40px;
-    padding: 20px;
-    border: none;
+  text-align: center;
+  color: #000;
+  margin-left: 40%;
+  border-radius: 40px;
+  border: none;
+  width: 200px;
+  height: 50px;
 }
+
+.btn_load_more button:hover {
+  background: #acacac;
+} 
 /***** ALex LOAD MORE  ****/
