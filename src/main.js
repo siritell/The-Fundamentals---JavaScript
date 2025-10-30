@@ -1,6 +1,6 @@
 import "./reset.css";
 import "./style.css";
-import { getAllImages, postComment, postLike, getOneImage } from "./api.js";
+import { getAllImages, postComment, postLike, getOneImage, getAllPages } from "./api.js";
 
 const container = document.getElementById("gallery-container");
 
@@ -48,4 +48,21 @@ async function createImages() {
   }
 }
 
+const statsImages = async () => {
+  let totalImages = 0;
+
+  // Get total pages
+  const totalPages = await getAllPages()
+
+  // Get number of images in page
+
+  // Loop through all pages and add to totalImages
+  for(let page = 1; page <= totalPages; page++ ) {
+    const imagesOnPage = await getAllImages(page)
+    totalImages += imagesOnPage.length;
+  }
+  return totalImages;
+}
+
+statsImages()
 createImages();
