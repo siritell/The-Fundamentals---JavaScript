@@ -37,7 +37,7 @@ function createImage(src, id) {
 }
 
 async function createImages() {
-  const gallery = await getAllImages(1);
+  const gallery = await getAllImages();
 
   console.log(gallery);
 
