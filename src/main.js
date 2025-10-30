@@ -2,11 +2,11 @@ import "./reset.css";
 import "./style.css";
 import { getAllImages, postComment, postLike, getOneImage } from "./api.js";
 
-const container = document.getElementById("app");
+const container = document.getElementById("gallery-container");
 
 function createImage(src, id) {
   const card = document.createElement("div");
-  card.classList.add("article-card");
+  card.classList.add("gallery-item");
 
   const image = document.createElement("img");
   image.src = src;
@@ -14,22 +14,25 @@ function createImage(src, id) {
   card.appendChild(image);
 
   const likeButton = document.createElement("button");
+  const imageBtnCont = document.createElement("div");
+  imageBtnCont.classList.add("image-buttons");
 
-  likeButton.textContent = "Like 👍";
-  likeButton.classList.add("overlay-button");
-  likeButton.addEventListener("click", () => postLike(id)); // which function to call.. which type of event
-  card.appendChild(likeButton);
+  likeButton.innerHTML = <img src="./src/icons/like.svg" alt="like-button" />;
+  likeButton.classList.add("like-comment-button");
+  likeButton.addEventListener("click", () => postLike(id));
 
   const commentButton = document.createElement("button");
   let commenter_name = "Test";
   let comment = "Test comment";
-  commentButton.textContent = "Comment";
-  commentButton.classList.add("overlay-button");
+  commentButton.innerHTML =
+    "<img src='./src/icons/comment.svg' alt='comment-button' />";
+  commentButton.classList.add("like-comment-button");
   commentButton.addEventListener("click", () =>
     postComment(id, commenter_name, comment)
   );
-  card.appendChild(commentButton);
-
+  imageBtnCont.appendChild(likeButton);
+  imageBtnCont.appendChild(commentButton);
+  card.appendChild(imageBtnCont);
   container.appendChild(card);
 }
 
