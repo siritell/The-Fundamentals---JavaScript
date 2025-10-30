@@ -54,8 +54,6 @@ const statsImages = async () => {
   // Get total pages
   const totalPages = await getAllPages()
 
-  // Get number of images in page
-
   // Loop through all pages and add to totalImages
   for(let page = 1; page <= totalPages; page++ ) {
     const imagesOnPage = await getAllImages(page)
@@ -64,5 +62,22 @@ const statsImages = async () => {
   return totalImages;
 }
 
+const statsComments = async () => {
+  let commentArray = [];
+
+  // Get total pages
+  const totalPages = await getAllPages()
+
+  // Loop through all pages and add to totalImages
+  for(let page = 1; page <= totalPages; page++ ) {
+    const imagesOnPage = await getAllImages(page)
+    commentArray.push(imagesOnPage.data.likes_count)
+    console.log(commentArray)
+  }
+  
+}
+
+
+statsComments()
 statsImages()
 createImages();
