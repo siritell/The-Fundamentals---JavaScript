@@ -23,8 +23,15 @@ function createImage(src, id, initialLikes) {
   image.src = src;
   image.classList.add("article-image");
   card.appendChild(image);
-  //ALEX Modal EVENT
-  image.addEventListener("click", () => openImageModal(src));
+
+  //ALEX Modal EVENT Save all gallery images for modal navigation
+  galleryImages.push({ image_url: src, id });
+
+// ALEX Click image -> open modal w/ correct index
+  image.addEventListener("click", () => {
+  const index = galleryImages.findIndex(img => img.id === id);
+  openImageModal(index, id);
+});
 
   //Like button
   const likeButton = document.createElement("button");
@@ -64,31 +71,71 @@ function createImage(src, id, initialLikes) {
 
 createImages();
 
-// --- ALEX Modal creation ---
+// ===== ALEX Modal Setup =====
+let currentImageIndex = 0;
+let galleryImages = [];
+
 const modal = document.createElement("div");
 modal.id = "image-modal";
 modal.style.display = "none";
 modal.innerHTML = `
   <div class="modal-backdrop"></div>
-  <div class="modal-content">
+  <div class="modal-content fade-in">
+    <button id="modal-close" class="modal-close">×</button>
+    <button id="modal-prev" class="modal-nav prev">‹</button>
     <img id="modal-image" src="" alt="Large View" />
+    <button id="modal-next" class="modal-nav next">›</button>
+    <div id="modal-comments" class="modal-comments"></div>
   </div>
 `;
 document.body.appendChild(modal);
 
-// ALEX Close modal when clicking backdrop
-modal.querySelector(".modal-backdrop").addEventListener("click", () => {
-  modal.style.display = "none";
-});
+// ALEX Elements MOdal
+const modalImg = document.getElementById("modal-image");
+const modalComments = document.getElementById("modal-comments");
+const btnPrev = document.getElementById("modal-prev");
+const btnNext = document.getElementById("modal-next");
+const btnClose = document.getElementById("modal-close");
 
-// ALEX Close modal on ESC key
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") modal.style.display = "none";
-});
-
-// ALEX Function to open image modal
-function openImageModal(src) {
-  const modalImg = document.getElementById("modal-image");
-  modalImg.src = src;
+async function openImageModal(index, id) {
+  currentImageIndex = index;
   modal.style.display = "flex";
+  modalImg.classList.remove("zoomed"); // reset zoom
+
+  const imageObj = galleryImages[index];
+  modalImg.src = imageObj.image_url;
+
+  // ALEX Load comments for this image
+  const data = await getOneImage(id);
+  modalComments.innerHTML = `<h3>Comments</h3>
+    ${data.comments.map(c => `<p><b>${c.commenter_name}:</b> ${c.comment}</p>`).join("") || "<p>No comments yet.</p>"}
+  `;
 }
+
+// ALEX Navigation modal
+btnPrev.addEventListener("click", () => {
+  currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+  const img = galleryImages[currentImageIndex];
+  openImageModal(currentImageIndex, img.id);
+});
+
+btnNext.addEventListener("click", () => {
+  currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+  const img = galleryImages[currentImageIndex];
+  openImageModal(currentImageIndex, img.id);
+});
+
+// ALEX Close modal
+btnClose.addEventListener("click", () => modal.style.display = "none");
+modal.querySelector(".modal-backdrop").addEventListener("click", () => modal.style.display = "none");
+
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") modal.style.display = "none";
+  if (e.key === "ArrowRight") btnNext.click();
+  if (e.key === "ArrowLeft") btnPrev.click();
+});
+
+// ALEX Zoom on click
+modalImg.addEventListener("click", () => {
+  modalImg.classList.toggle("zoomed");
+});
