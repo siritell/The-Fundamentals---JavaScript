@@ -23,6 +23,8 @@ function createImage(src, id, initialLikes) {
   image.src = src;
   image.classList.add("article-image");
   card.appendChild(image);
+  //ALEX Modal EVENT
+  image.addEventListener("click", () => openImageModal(src));
 
   //Like button
   const likeButton = document.createElement("button");
@@ -61,3 +63,32 @@ function createImage(src, id, initialLikes) {
 }
 
 createImages();
+
+// --- ALEX Modal creation ---
+const modal = document.createElement("div");
+modal.id = "image-modal";
+modal.style.display = "none";
+modal.innerHTML = `
+  <div class="modal-backdrop"></div>
+  <div class="modal-content">
+    <img id="modal-image" src="" alt="Large View" />
+  </div>
+`;
+document.body.appendChild(modal);
+
+// ALEX Close modal when clicking backdrop
+modal.querySelector(".modal-backdrop").addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+// ALEX Close modal on ESC key
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") modal.style.display = "none";
+});
+
+// ALEX Function to open image modal
+function openImageModal(src) {
+  const modalImg = document.getElementById("modal-image");
+  modalImg.src = src;
+  modal.style.display = "flex";
+}
