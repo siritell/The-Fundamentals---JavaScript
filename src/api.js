@@ -24,6 +24,18 @@ export const getOneImage = async (id) => {
   }
 };
 
+export const getAllPages = async () => {
+  try {
+    const url = `${baseURL}`;
+    const response = await fetch(url);
+    const pageData = await response.json();
+
+    return pageData.total_pages;
+  } catch {
+    console.log("Couldn't get images");
+  }
+};
+
 export const postLike = async (id) => {
   try {
     const url = `${baseURL}/${id}/like`;
