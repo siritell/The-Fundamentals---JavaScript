@@ -5,9 +5,8 @@ import { getAllImages, postComment, postLike, getOneImage } from "./api.js";
 const container = document.getElementById("gallery-container");
 
 function createImage(src, id) {
-  const card = document.createElement("a");
-  card.classList.add("gallery-item", "open-btn");
-  card.setAttribute('href', '#modal-window')
+  const card = document.createElement("div");
+  card.classList.add("gallery-item");
 
   const image = document.createElement("img");
   image.src = src;
