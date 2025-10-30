@@ -1,17 +1,20 @@
 :root {
-  background-color: #000000;
+  background-color: #1A1A1A;
   color: #FFFFFF;
   margin: 0.5em;
   font-family: "Parkinsans", sans-serif;
 }
+
+.container {
+  margin-inline: auto;
+  padding: 20px;
+  max-width: 1200px;
+}
+
 .stats-container {
   display: flex;
   justify-content: flex-end;
-  align-items: center;
-  margin: 20px 20px 20px auto;
-  padding: 10px;
   gap: 10px;
-  max-width: 800px;
 }
 .stat-box {
   display: flex;
@@ -30,8 +33,6 @@
 }
 .stat-number {
   font-size: 1.5em;
-  margin: 0;
-  align-self: flex-end;
 }
 .stat-box.image   { background-color: #0D2E17; }
 .stat-box.comments{ background-color: #2C0B3C; }
@@ -82,32 +83,67 @@
   margin-left: auto;
   color: #FFFFFF;
 }
-#app {
+#gallery-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   grid-auto-rows: auto;
-  gap: 10px;
-  padding: 10px;
+  gap: 16px;
 }
 .article-card {
   width: 100%;
 }
-.article-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
+.gallery-item {
+  position: relative;
+  background: no-repeat center;
+  background-size: 100%;
+  padding: 16px;
+  height: 300px;
+  display: flex;
   border-radius: 8px;
-  padding: 0.1em;
+  align-items: flex-end;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+
+  & .image-buttons {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+    opacity: 0;
+    display: flex;
+    gap: 8px;
+  }
 }
+
+.like-comment-button {
+  background-color: rgba(26, 26, 26, 0.5);
+  color: #FFFFFF;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(26, 26, 26, 0.8);
+  }
+}
+
+.gallery-item:hover .image-buttons {
+  opacity: 1;
+  bottom: 16px;
+  transition: all 0.4s ease;
+}
+
+.gallery-item:hover{
+  background-size: 105%;
+}
+
 @media (max-width: 600px) {
   .stats-container {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     flex-wrap: nowrap;
     gap: 8px;
-    margin: 0 auto;
   }
   .stat-box {
     min-width: 90px;
@@ -139,9 +175,6 @@
   }
   .top-like .like-count {
     font-size: 1em;
-  }
-  #app {
-    grid-template-columns: 1fr;
   }
   .article-card {
     width: 100%;

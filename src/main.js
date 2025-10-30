@@ -1,3 +1,4 @@
+import "./reset.css";
 import "./style.css";
 import { getAllImages, postComment, postLike, getOneImage } from "./api.js";
 
