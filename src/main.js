@@ -17,7 +17,7 @@ function createImage(src, id) {
   const imageBtnCont = document.createElement("div");
   imageBtnCont.classList.add("image-buttons");
 
-  likeButton.innerHTML = <img src="./src/icons/like.svg" alt="like-button" />;
+  likeButton.innerHTML = "<img src='./src/icons/like.svg' alt='like-button' />";
   likeButton.classList.add("like-comment-button");
   likeButton.addEventListener("click", () => postLike(id));
 
@@ -37,7 +37,7 @@ function createImage(src, id) {
 }
 
 async function createImages() {
-  const gallery = await getAllImages();
+  const gallery = await getAllImages(1);
 
   console.log(gallery);
 
