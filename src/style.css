@@ -263,8 +263,11 @@ h3 {
   margin-top: 50px;
 }
 .btn_load_more button {
-  background: #0d2e17;
-  color: #fff;
-  margin-left: 50%;
+  background: #fff;
+    color: #000;
+    margin-left: 40%;
+    border-radius: 40px;
+    padding: 20px;
+    border: none;
 }
 /***** ALex LOAD MORE  ****/
