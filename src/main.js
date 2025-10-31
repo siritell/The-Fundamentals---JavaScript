@@ -61,13 +61,36 @@ function createImage(src, id, initialLikes, initialComments) {
   likeIcon.classList.add("like-icon");
   likeButton.appendChild(likeIcon);
 
+  //Solid heart icon when liked
+  const solidHeartIcon = document.createElement("img");
+  solidHeartIcon.src = "./src/icons/like-filled.svg";
+  solidHeartIcon.alt = "solid-heart-icon";
+  solidHeartIcon.classList.add("solid-heart-icon");
+  likeButton.appendChild(solidHeartIcon);
+  solidHeartIcon.style.display = "none";
+
   //Laura: Add event listener to like button to show the like count number.
+  // Change to solid heart icon when clicked
+  let isLiked = false;
   likeButton.addEventListener("click", async () => {
-    try {
-      await postLike(id);
+    isLiked = !isLiked;
+
+    // Show/hide icons based on like state
+    if (isLiked) {
+      solidHeartIcon.style.display = "block";
+      likeIcon.style.display = "none";
+      try {
+        await postLike(id);
+        const current = parseInt(likeCountNum.textContent || "0", 10) || 0;
+        likeCountNum.textContent = String(current + 1);
+      } catch (e) {}
+    } else if (!isLiked) {
       const current = parseInt(likeCountNum.textContent || "0", 10) || 0;
-      likeCountNum.textContent = String(current + 1);
-    } catch (e) {}
+      likeCountNum.textContent = String(current - 1);
+
+      solidHeartIcon.style.display = "none";
+      likeIcon.style.display = "block";
+    }
   });
 
   //Laura: Create Comment button
