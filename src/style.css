@@ -74,9 +74,15 @@
   flex: 1;
 }
 
-.top-like.gold { background-color: #f6eeee52; }
-.top-like.silver { background-color: #f6eeee52; }
-.top-like.bronze { background-color: #f6eeee52; }
+.top-like.gold {
+  background-color: #f6eeee52;
+}
+.top-like.silver {
+  background-color: #f6eeee52;
+}
+.top-like.bronze {
+  background-color: #f6eeee52;
+}
 
 .top-like .rank {
   font-size: 2em;
@@ -158,6 +164,29 @@ h3 {
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.like-comment-button .like-count {
+  font-size: 1em;
+  font-weight: normal;
+}
+
+.like-comment-button .like-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.like-comment-button .comment-count {
+  font-size: 1em;
+  font-weight: normal;
+}
+
+.like-comment-button .comment-icon {
+  width: 20px;
+  height: 20px;
 }
 
 .like-comment-button:hover {
@@ -234,7 +263,7 @@ h3 {
 .modal-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,.8);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .modal-content {
@@ -244,19 +273,25 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: fade .25s ease-out;
+  animation: fade 0.25s ease-out;
 }
 
 @keyframes fade {
-  from { opacity: 0; transform: scale(.95); }
-  to { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .modal-content img {
   max-width: 100%;
   max-height: 80vh;
   cursor: zoom-in;
-  transition: transform .2s;
+  transition: transform 0.2s;
 }
 
 .modal-content img.zoomed {
@@ -301,10 +336,15 @@ h3 {
   padding: 8px;
 }
 
-.modal-nav.prev { left: -50px; }
-.modal-nav.next { right: -50px; }
-.modal-nav:hover { transform: translateY(-50%) scale(1.2); }
-
+.modal-nav.prev {
+  left: -50px;
+}
+.modal-nav.next {
+  right: -50px;
+}
+.modal-nav:hover {
+  transform: translateY(-50%) scale(1.2);
+}
 
 /*** ALEX css modal*******/
 
@@ -326,5 +366,5 @@ h3 {
 
 .btn_load_more button:hover {
   background: #acacac;
-} 
+}
 /***** ALex LOAD MORE  ****/

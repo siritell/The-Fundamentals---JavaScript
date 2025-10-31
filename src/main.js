@@ -9,13 +9,18 @@ async function createImages() {
   console.log(gallery);
 
   for (const image of gallery) {
-    createImage(image.image_url, image.id, image.likes_count || 0);
+    createImage(
+      image.image_url,
+      image.id,
+      image.likes_count || 0,
+      image.comments_count || 0
+    );
     //Create an image element for each image.
     console.log(image.image_url);
   }
 }
 
-function createImage(src, id, initialLikes) {
+function createImage(src, id, initialLikes, initialComments) {
   const card = document.createElement("div");
   card.classList.add("gallery-item");
 
@@ -27,23 +32,32 @@ function createImage(src, id, initialLikes) {
   //ALEX Modal EVENT Save all gallery images for modal navigation
   galleryImages.push({ image_url: src, id });
 
-// ALEX Click image -> open modal w/ correct index
+  // ALEX Click image -> open modal w/ correct index
   image.addEventListener("click", () => {
-  const index = galleryImages.findIndex(img => img.id === id);
-  openImageModal(index, id);
-});
+    const index = galleryImages.findIndex((img) => img.id === id);
+    openImageModal(index, id);
+  });
 
-  //Like button
+  //Laura: Create Like button
   const likeButton = document.createElement("button");
   const imageBtnCont = document.createElement("div");
   imageBtnCont.classList.add("image-buttons");
-
-  likeButton.innerHTML = "<img src='./src/icons/like.svg' alt='like-button'/>";
   likeButton.classList.add("like-comment-button");
+
+  //Laura: Create like count number inside like button(on the left side of the button)
   const likeCountNum = document.createElement("span");
   likeCountNum.classList.add("like-count");
   likeCountNum.textContent = String(initialLikes || 0);
+  likeButton.appendChild(likeCountNum);
 
+  //Laura: Create like icon inside like button(on the right side of the button)
+  const likeIcon = document.createElement("img");
+  likeIcon.src = "./src/icons/like.svg";
+  likeIcon.alt = "like-icon";
+  likeIcon.classList.add("like-icon");
+  likeButton.appendChild(likeIcon);
+
+  //Laura: Add event listener to like button to show the like count number.
   likeButton.addEventListener("click", async () => {
     try {
       await postLike(id);
@@ -52,17 +66,35 @@ function createImage(src, id, initialLikes) {
     } catch (e) {}
   });
 
-  //Comment button
+  //Laura: Create Comment button
   const commentButton = document.createElement("button");
-  let commenter_name = "Test";
-  let comment = "Test comment";
-  commentButton.innerHTML =
-    "<img src='./src/icons/comment.svg' alt='comment-button' />";
   commentButton.classList.add("like-comment-button");
-  commentButton.addEventListener("click", () =>
-    postComment(id, commenter_name, comment)
-  );
-  imageBtnCont.appendChild(likeCountNum);
+
+  //Laura: Create comment count number inside comment button(on the left side of the button)
+  const commentCountNum = document.createElement("span");
+  commentCountNum.classList.add("comment-count");
+  commentCountNum.textContent = String(initialComments || 0);
+  commentButton.appendChild(commentCountNum);
+
+  //Laura: Create comment icon inside comment button(on the right side of the button)
+  const commentIcon = document.createElement("img");
+  commentIcon.src = "./src/icons/comment.svg";
+  commentIcon.alt = "comment-icon";
+  commentIcon.classList.add("comment-icon");
+  commentButton.appendChild(commentIcon);
+
+  //Laura: Add event listener to comment button to post the comment and show the comment count number.
+  const commenter_name = "Test";
+  const comment = "Test comment";
+  commentButton.addEventListener("click", async () => {
+    try {
+      await postComment(id, commenter_name, comment);
+      const current = parseInt(commentCountNum.textContent || "0", 10) || 0;
+      commentCountNum.textContent = String(current + 1);
+    } catch (e) {}
+  });
+
+  // Append both buttons to the same container
   imageBtnCont.appendChild(likeButton);
   imageBtnCont.appendChild(commentButton);
   card.appendChild(imageBtnCont);
@@ -108,13 +140,18 @@ async function openImageModal(index, id) {
   // ALEX Load comments for this image
   const data = await getOneImage(id);
   modalComments.innerHTML = `<h3>Comments</h3>
-    ${data.comments.map(c => `<p><b>${c.commenter_name}:</b> ${c.comment}</p>`).join("") || "<p>No comments yet.</p>"}
+    ${
+      data.comments
+        .map((c) => `<p><b>${c.commenter_name}:</b> ${c.comment}</p>`)
+        .join("") || "<p>No comments yet.</p>"
+    }
   `;
 }
 
 // ALEX Navigation modal
 btnPrev.addEventListener("click", () => {
-  currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+  currentImageIndex =
+    (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
   const img = galleryImages[currentImageIndex];
   openImageModal(currentImageIndex, img.id);
 });
@@ -126,10 +163,12 @@ btnNext.addEventListener("click", () => {
 });
 
 // ALEX Close modal
-btnClose.addEventListener("click", () => modal.style.display = "none");
-modal.querySelector(".modal-backdrop").addEventListener("click", () => modal.style.display = "none");
+btnClose.addEventListener("click", () => (modal.style.display = "none"));
+modal
+  .querySelector(".modal-backdrop")
+  .addEventListener("click", () => (modal.style.display = "none"));
 
-document.addEventListener("keydown", e => {
+document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") modal.style.display = "none";
   if (e.key === "ArrowRight") btnNext.click();
   if (e.key === "ArrowLeft") btnPrev.click();

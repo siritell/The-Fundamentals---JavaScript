@@ -53,6 +53,9 @@ export const postComment = async (id, commenter_name, comment) => {
     const url = `${baseURL}/${id}/comment`;
     const response = await fetch(url, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         commenter_name: commenter_name,
         comment: comment,
