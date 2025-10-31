@@ -271,7 +271,7 @@ h3 {
 /* Main modal container */
 .modal-content {
   position: relative;
-  width: %;
+  width: 90%;
   max-width: 600px;
   background: #ffffff;
   border-radius: 18px;
