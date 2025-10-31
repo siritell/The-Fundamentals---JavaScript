@@ -52,22 +52,25 @@ const statsLikes = async () => {
 
 export const createTotalLikes = async () => {
     const statValue = document.getElementById("likeCount")
-
+    statValue.classList.add("loading")
     const value = await statsLikes()
+    statValue.classList.remove("loading")
     statValue.textContent = value
 };
 
 export const createTotalComments = async () => {
     const statValue = document.getElementById("commentCount")
-
+    statValue.classList.add("loading")
     const value = await statsComments()
+    statValue.classList.remove("loading")
     statValue.textContent = value
 };
 
 export const createTotalImages = async () => {
     const statValue = document.getElementById("imageCount")
-
+    statValue.classList.add("loading")
     const value = await statsImages()
+    statValue.classList.remove("loading")
     statValue.textContent = value
 };
 
