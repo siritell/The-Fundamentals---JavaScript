@@ -427,6 +427,88 @@ h3 {
 
 /*** ALEX css modal*******/
 
+
+/* ---- ALEX  Desktop Split Layout (Image Left / Comments Right) ---- */
+@media (min-width: 900px) {
+  #image-modal {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-content {
+    max-width: 1200px;
+    width: 90%;
+    height: 85vh;
+    flex-direction: row;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+  }
+
+  .modal-content img {
+    width: 60%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px 0 0 20px;
+    max-height: none;
+  }
+
+  .modal-comments,
+  .comment-form {
+    width: 40%;
+    max-width: 40%;
+  }
+
+  .modal-comments {
+    padding: 24px;
+    background: #fff;
+    overflow-y: auto;
+    flex-grow: 1;
+  }
+
+  .modal-comments .comment {
+    background: #f4f4f4;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .comment-form {
+    padding: 24px;
+    border-top: 1px solid transparent;
+    display: flex;
+    gap: 12px;
+    background: #fff;
+  }
+
+  .comment-form input,
+  .comment-form textarea {
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .comment-form button {
+    border-radius: 8px;
+    font-size: 15px;
+    padding: 14px 0;
+  }
+
+  /* Close button adjustment for new layout */
+  .modal-close {
+    top: 15px;
+    right: 15px;
+    background: #fff;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+}
+/******* ALEX MODAL DESKTOP VERSION *******/
+
 /***** ALex LOAD MORE  ****/
 .btn_load_more {
   width: 100%;
