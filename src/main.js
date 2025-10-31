@@ -84,7 +84,10 @@ function createImage(src, id, initialLikes, initialComments) {
         const current = parseInt(likeCountNum.textContent || "0", 10) || 0;
         likeCountNum.textContent = String(current + 1);
       } catch (e) {}
-    } else {
+    } else if (!isLiked) {
+      const current = parseInt(likeCountNum.textContent || "0", 10) || 0;
+      likeCountNum.textContent = String(current - 1);
+
       solidHeartIcon.style.display = "none";
       likeIcon.style.display = "block";
     }
