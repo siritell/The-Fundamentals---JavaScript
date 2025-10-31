@@ -271,7 +271,7 @@ h3 {
 /* Main modal container */
 .modal-content {
   position: relative;
-  width: 100%;
+  width: 90%;
   max-width: 600px;
   background: #ffffff;
   border-radius: 18px;
@@ -404,7 +404,7 @@ h3 {
 /* Navigation arrows */
 .modal-nav {
   position: absolute;
-  top: 50%;
+  top: 30%;
   transform: translateY(-50%);
   font-size: 32px;
   border: none;
@@ -438,7 +438,6 @@ h3 {
   .modal-content {
     max-width: 1200px;
     width: 90%;
-    height: 85vh;
     flex-direction: row;
     border-radius: 20px;
     overflow: hidden;
