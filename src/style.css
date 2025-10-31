@@ -260,181 +260,134 @@ h3 {
   z-index: 9999;
 }
 
-/* ===== Modal Backdrop ===== */
-.modal {
-  display: none;
-  position: fixed;
+.modal-backdrop {
+  position: absolute;
   inset: 0;
-  background: rgba(240, 242, 245, 0.55);
-  backdrop-filter: blur(16px) saturate(140%);
-  z-index: 999;
-  justify-content: center;
-  align-items: center;
-  animation: fadeIn 0.25s ease forwards;
+  background: rgba(0, 0, 0, 0.8);
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* ===== Modal Content Card ===== */
 .modal-content {
   position: relative;
-  max-width: 80vw;
-  max-height: 85vh;
-  background: #ffffffcc;
-  backdrop-filter: blur(12px);
-  border-radius: 20px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-  overflow: hidden;
-  animation: slideUp 0.35s ease forwards;
+  max-width: 85%;
+  max-height: 85%;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  align-items: center;
+  animation: fade 0.25s ease-out;
 }
 
-@keyframes slideUp {
-  from { transform: translateY(30px); opacity: 0; }
-  to   { transform: translateY(0);   opacity: 1; }
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-/* ===== Modal Image ===== */
-#modal-image {
+.modal-content img {
   max-width: 100%;
-  max-height: 60vh;
-  border-radius: 14px;
-  object-fit: contain;
-  transition: transform 0.25s ease;
+  max-height: 80vh;
+  cursor: zoom-in;
+  transition: transform 0.2s;
 }
 
-#modal-image:hover {
-  transform: scale(1.01);
+.modal-content img.zoomed {
+  transform: scale(1.7);
+  cursor: zoom-out;
 }
 
-/* ===== Navigation Arrows ===== */
+.modal-comments {
+  width: 100%;
+  background: #fff;
+  color: #000;
+  padding: 10px;
+  max-height: 150px;
+  overflow-y: auto;
+  border-radius: 6px;
+  margin-top: 6px;
+}
+
+.comment-form {
+  width: 100%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.comment-form input,
+.comment-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.comment-form textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.comment-form button {
+  padding: 10px 20px;
+  background-color: #1a1a1a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.comment-form button:hover {
+  background-color: #333;
+}
+
+.comment-form button:active {
+  background-color: #000;
+}
+
+.modal-close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 32px;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
 .modal-nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: #ffffffbb;
-  backdrop-filter: blur(10px);
+  font-size: 45px;
+  background: none;
   border: none;
-  font-size: 28px;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.2s;
-}
-
-.modal-nav:hover {
-  background: white;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-  transform: translateY(-50%) scale(1.1);
-}
-
-.prev { left: 12px; }
-.next { right: 12px; }
-
-/* ===== Close Button ===== */
-.modal-close {
-  position: absolute;
-  right: 14px;
-  top: 14px;
-  font-size: 22px;
-  border: none;
-  background: #ffffffbb;
-  backdrop-filter: blur(10px);
-  border-radius: 50%;
-  width: 38px;
-  height: 38px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.modal-close:hover {
-  background: white;
-  transform: scale(1.1);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
-}
-
-/* ===== Comments Section ===== */
-.modal-comments {
-  margin-top: 12px;
-  max-height: 180px;
-  overflow-y: auto;
-  padding-right: 6px;
-  font-size: 14px;
-  color: #444;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-/* ===== Comment Form ===== */
-.modal-comment-form {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 12px;
-  background: #ffffffaa;
-  backdrop-filter: blur(12px);
-  padding: 12px;
-  border-radius: 14px;
-}
-
-.modal-comment-form input,
-.modal-comment-form textarea {
-  width: 100%;
-  border: 1px solid rgba(180,180,180,0.4);
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 14px;
-  background: rgba(255,255,255,0.85);
-  outline: none;
-  font-family: system-ui, sans-serif;
-  transition: border 0.2s, background 0.2s;
-}
-
-.modal-comment-form input:focus,
-.modal-comment-form textarea:focus {
-  border: 1px solid #5a9bff;
-  background: #ffffff;
-}
-
-.modal-comment-form textarea {
-  resize: none;
-  height: 70px;
-}
-
-.modal-comment-form button {
-  background: #5a9bff;
   color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 14px;
-  transition: 0.25s;
+  font-weight: bold;
+  padding: 8px;
 }
 
-.modal-comment-form button:hover {
-  background: #3e82ff;
-  transform: translateY(-1px);
+.modal-nav.prev {
+  left: -50px;
 }
-
-.modal-comment-form button:active {
-  transform: translateY(1px);
+.modal-nav.next {
+  right: -50px;
 }
-
-/* Smooth Scroll */
-.modal-comments {
-  scrollbar-width: thin;
+.modal-nav:hover {
+  transform: translateY(-50%) scale(1.2);
 }
 
 
