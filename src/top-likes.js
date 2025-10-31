@@ -40,6 +40,7 @@ export const createTopLikes = async () => {
     const bronzeImage = bronzeContainer.querySelector("img")
     const bronzeLikes = document.getElementById("topLike3")
 
+    //Apply loading state and get data
     topLikesContainer.classList.add("loading")
     const topThree = await topLikes();
     topLikesContainer.classList.remove("loading")
