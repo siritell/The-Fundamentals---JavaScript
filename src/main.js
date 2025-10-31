@@ -2,7 +2,7 @@ import "./reset.css";
 import "./style.css";
 import { getAllImages, postComment, postLike, getOneImage, getAllPages } from "./api.js";
 import { updateStats, createTotalLikes, createTotalComments, createTotalImages } from "./stats.js";
-import { topLikes } from "./top-likes.js";
+import { createTopLikes } from "./top-likes.js";
 
 const container = document.getElementById("gallery-container");
 
@@ -264,4 +264,4 @@ commentForm.addEventListener("submit", async (e) => {
 
 createImages();
 updateStats()
-topLikes()
+createTopLikes()
