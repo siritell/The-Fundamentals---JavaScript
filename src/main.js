@@ -1,6 +1,7 @@
 import "./reset.css";
 import "./style.css";
-import { getAllImages, postComment, postLike, getOneImage } from "./api.js";
+import { getAllImages, postComment, postLike, getOneImage, getAllPages } from "./api.js";
+import { updateStats, createTotalLikes, createTotalComments, createTotalImages } from "./stats.js";
 
 const container = document.getElementById("gallery-container");
 
@@ -123,8 +124,6 @@ function createImage(src, id, initialLikes, initialComments) {
   card.appendChild(imageBtnCont);
   container.appendChild(card);
 }
-
-createImages();
 
 // ===== ALEX Modal Setup =====
 let currentImageIndex = 0;
@@ -261,3 +260,6 @@ commentForm.addEventListener("submit", async (e) => {
     alert("Failed to post comment. Please try again.");
   }
 });
+
+createImages();
+updateStats()
