@@ -457,7 +457,6 @@ h3 {
   .comment-form {
   width: 40%;
   max-width: 40%;
-  background: inherit; /* keep your original bg */
 }
 
   .modal-comments {
