@@ -116,7 +116,7 @@ const statsImages = async () => {
 };
 
 const statsComments = async () => {
-  let commentArray = [];
+  let totalComments = 0;
 
   // Get total pages
   const totalPages = await getAllPages();
@@ -124,11 +124,27 @@ const statsComments = async () => {
   // Loop through all pages and collect comment counts
   for (let page = 1; page <= totalPages; page++) {
     const imagesOnPage = await getAllImages(page);
-    for (const image of imagesOnPage) {
-      commentArray.push(image.comments_count || 0);
-    }
+
+    //Go through all images on the page, get the length of comments array and add it to totalComments
+    totalComments += imagesOnPage.reduce((sum, image) => sum + image.comments.length, 0);
   }
-  console.log(commentArray);
+ return totalComments
+};
+
+const statsLikes = async () => {
+  let totalComments = 0;
+
+  // Get total pages
+  const totalPages = await getAllPages();
+
+  // Loop through all pages and collect comment counts
+  for (let page = 1; page <= totalPages; page++) {
+    const imagesOnPage = await getAllImages(page);
+
+    //Go through all images on the page, get the length of comments array and add it to totalComments
+    totalComments += imagesOnPage.reduce((sum, image) => sum + image.comments.length, 0);
+  }
+ return totalComments
 };
 
 // ===== ALEX Modal Setup =====
@@ -268,3 +284,4 @@ commentForm.addEventListener("submit", async (e) => {
 });
 
 createImages();
+statsComments()
