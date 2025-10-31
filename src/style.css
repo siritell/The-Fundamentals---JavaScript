@@ -251,143 +251,172 @@ h3 {
 
 /*** ALEX css modal*******/
 
-#image-modal {
+/* =============================
+         Modal Styles
+============================= */
+
+.modal {
   position: fixed;
   inset: 0;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  background: rgba(0,0,0,0.55);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease-in-out;
 }
 
-.modal-backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.8);
+.modal.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .modal-content {
   position: relative;
-  max-width: 85%;
-  max-height: 85%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  animation: fade 0.25s ease-out;
-}
-
-@keyframes fade {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.modal-content img {
-  max-width: 100%;
-  max-height: 80vh;
-  cursor: zoom-in;
-  transition: transform 0.2s;
-}
-
-.modal-content img.zoomed {
-  transform: scale(1.7);
-  cursor: zoom-out;
-}
-
-.modal-comments {
-  width: 100%;
+  width: min(90vw, 860px);
+  max-height: 92vh;
   background: #fff;
-  color: #000;
-  padding: 10px;
-  max-height: 150px;
-  overflow-y: auto;
-  border-radius: 6px;
-  margin-top: 6px;
-}
-
-.comment-form {
-  width: 100%;
-  margin-top: 10px;
+  border-radius: 14px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  animation: popIn 0.22s ease;
 }
 
-.comment-form input,
-.comment-form textarea {
+@keyframes popIn {
+  from { transform: scale(.92); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* Image inside modal */
+.modal-content img {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-family: inherit;
-  font-size: 14px;
-  box-sizing: border-box;
+  height: auto;
+  display: block;
+  max-height: 65vh;
+  object-fit: contain;
+  background: #fafafa;
 }
 
-.comment-form textarea {
-  resize: vertical;
-  min-height: 60px;
-}
-
-.comment-form button {
-  padding: 10px 20px;
-  background-color: #1a1a1a;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
-}
-
-.comment-form button:hover {
-  background-color: #333;
-}
-
-.comment-form button:active {
-  background-color: #000;
-}
-
+/* Close button */
 .modal-close {
   position: absolute;
-  top: -10px;
-  right: -10px;
-  font-size: 32px;
+  top: 12px;
+  right: 12px;
   background: #fff;
   border: none;
+  font-size: 22px;
   cursor: pointer;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  transition: background 0.2s;
 }
 
+.modal-close:hover {
+  background: #f3f3f3;
+}
+
+/* Nav arrows */
 .modal-nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 45px;
-  background: none;
+  background: rgba(255,255,255,0.9);
   border: none;
+  font-size: 26px;
+  padding: 8px 14px;
   cursor: pointer;
-  color: white;
-  font-weight: bold;
-  padding: 8px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-.modal-nav.prev {
-  left: -50px;
-}
-.modal-nav.next {
-  right: -50px;
-}
+.modal-nav.prev { left: 10px; }
+.modal-nav.next { right: 10px; }
+
 .modal-nav:hover {
-  transform: translateY(-50%) scale(1.2);
+  background: #fff;
+}
+
+/* =============================
+         Comments
+============================= */
+
+.modal-comments {
+  padding: 14px;
+  font-size: 14px;
+  max-height: 150px;
+  overflow-y: auto;
+  border-top: 1px solid #eee;
+}
+
+.modal-comments::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-comments::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.2);
+  border-radius: 10px;
+}
+
+/* =============================
+      Comment Input Box
+============================= */
+
+.modal-comment-form {
+  padding: 14px;
+  border-top: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-comment-form input,
+.modal-comment-form textarea {
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  background: #fafafa;
+  outline: none;
+  transition: border 0.2s, background 0.2s;
+}
+
+.modal-comment-form input:focus,
+.modal-comment-form textarea:focus {
+  border-color: #0095f6;
+  background: #fff;
+}
+
+.modal-comment-form textarea {
+  resize: none;
+  height: 60px;
+}
+
+.modal-comment-form button {
+  padding: 10px;
+  background: #0095f6;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.modal-comment-form button:hover {
+  background: #0077cc;
+}
+
+.modal-comment-form button:active {
+  transform: scale(0.95);
 }
 
 /*** ALEX css modal*******/
