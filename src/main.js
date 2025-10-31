@@ -3,6 +3,9 @@ import "./style.css";
 import { getAllImages, postComment, postLike, getOneImage } from "./api.js";
 
 const container = document.getElementById("gallery-container");
+
+// ===== ALEX Modal Setup =====
+
 async function createImages() {
   const gallery = await getAllImages();
 
@@ -15,7 +18,7 @@ async function createImages() {
       image.likes_count || 0,
       image.comments_count || 0
     );
-    //Create an image element for each image.
+
     console.log(image.image_url);
   }
 }
@@ -23,6 +26,7 @@ async function createImages() {
 function createImage(src, id, initialLikes, initialComments) {
   const card = document.createElement("div");
   card.classList.add("gallery-item");
+  card.setAttribute("data-image-id", id);
 
   const image = document.createElement("img");
   image.src = src;
@@ -83,15 +87,11 @@ function createImage(src, id, initialLikes, initialComments) {
   commentIcon.classList.add("comment-icon");
   commentButton.appendChild(commentIcon);
 
-  //Laura: Add event listener to comment button to post the comment and show the comment count number.
-  const commenter_name = "Test";
-  const comment = "Test comment";
-  commentButton.addEventListener("click", async () => {
-    try {
-      await postComment(id, commenter_name, comment);
-      const current = parseInt(commentCountNum.textContent || "0", 10) || 0;
-      commentCountNum.textContent = String(current + 1);
-    } catch (e) {}
+  //Laura: Add event listener to comment button to open modal with enlarged image and comments.
+  commentButton.addEventListener("click", () => {
+    // Open modal with enlarged image and show comments section
+    const index = galleryImages.findIndex((img) => img.id === id);
+    openImageModal(index, id);
   });
 
   // Append both buttons to the same container
@@ -106,6 +106,7 @@ createImages();
 // ===== ALEX Modal Setup =====
 let currentImageIndex = 0;
 let galleryImages = [];
+let currentImageId = null;
 
 const modal = document.createElement("div");
 modal.id = "image-modal";
@@ -118,34 +119,52 @@ modal.innerHTML = `
     <img id="modal-image" src="" alt="Large View" />
     <button id="modal-next" class="modal-nav next">›</button>
     <div id="modal-comments" class="modal-comments"></div>
+    <form id="comment-form" class="comment-form">
+      <input type="text" id="commenter-name" placeholder="Your name" required />
+      <textarea id="comment-text" placeholder="Write a comment..." rows="3" required></textarea>
+      <button type="submit">Post Comment</button>
+    </form>
   </div>
 `;
 document.body.appendChild(modal);
 
-// ALEX Elements MOdal
+// ALEX Elements Modal
 const modalImg = document.getElementById("modal-image");
 const modalComments = document.getElementById("modal-comments");
 const btnPrev = document.getElementById("modal-prev");
 const btnNext = document.getElementById("modal-next");
 const btnClose = document.getElementById("modal-close");
+const commentForm = document.getElementById("comment-form");
+const commenterNameInput = document.getElementById("commenter-name");
+const commentTextInput = document.getElementById("comment-text");
 
 async function openImageModal(index, id) {
   currentImageIndex = index;
+  currentImageId = id;
   modal.style.display = "flex";
   modalImg.classList.remove("zoomed"); // reset zoom
 
   const imageObj = galleryImages[index];
   modalImg.src = imageObj.image_url;
 
+  // Reset form
+  commenterNameInput.value = "";
+  commentTextInput.value = "";
+
   // ALEX Load comments for this image
+  await loadComments(id);
+}
+
+async function loadComments(id) {
   const data = await getOneImage(id);
-  modalComments.innerHTML = `<h3>Comments</h3>
-    ${
-      data.comments
-        .map((c) => `<p><b>${c.commenter_name}:</b> ${c.comment}</p>`)
-        .join("") || "<p>No comments yet.</p>"
-    }
-  `;
+  const commentsHTML =
+    data.comments && data.comments.length > 0
+      ? data.comments
+          .map((c) => `<p><b>${c.commenter_name}:</b> ${c.comment}</p>`)
+          .join("")
+      : "<p>No comments yet.</p>";
+
+  modalComments.innerHTML = `<h3>Comments</h3>${commentsHTML}`;
 }
 
 // ALEX Navigation modal
@@ -177,4 +196,45 @@ document.addEventListener("keydown", (e) => {
 // ALEX Zoom on click
 modalImg.addEventListener("click", () => {
   modalImg.classList.toggle("zoomed");
+});
+
+// Laura: comment section with user name and comment text area.
+commentForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  if (!currentImageId) return;
+
+  const commenter_name = commenterNameInput.value.trim();
+  const comment = commentTextInput.value.trim();
+
+  if (!commenter_name || !comment) {
+    alert("Please fill in both name and comment fields.");
+    return;
+  }
+
+  try {
+    await postComment(currentImageId, commenter_name, comment);
+
+    // Reload comments to show the new one
+    await loadComments(currentImageId);
+
+    // Clear form
+    commenterNameInput.value = "";
+    commentTextInput.value = "";
+
+    // Show comment count number
+    const currentCard = document.querySelector(
+      `[data-image-id="${currentImageId}"]`
+    );
+    if (currentCard) {
+      const commentCountEl = currentCard.querySelector(".comment-count");
+      if (commentCountEl) {
+        const current = parseInt(commentCountEl.textContent || "0", 10) || 0;
+        commentCountEl.textContent = String(current + 1);
+      }
+    }
+  } catch (error) {
+    console.error("Error posting comment:", error);
+    alert("Failed to post comment. Please try again.");
+  }
 });
