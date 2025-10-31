@@ -1,6 +1,7 @@
 import "./reset.css";
 import "./style.css";
 import { getAllImages, postComment, postLike, getOneImage, getAllPages } from "./api.js";
+import { updateStats } from "./stats.js";
 
 const container = document.getElementById("gallery-container");
 
@@ -100,52 +101,6 @@ function createImage(src, id, initialLikes, initialComments) {
   card.appendChild(imageBtnCont);
   container.appendChild(card);
 }
-
-const statsImages = async () => {
-  let totalImages = 0;
-
-  // Get total pages
-  const totalPages = await getAllPages();
-
-  // Loop through all pages and add to totalImages
-  for (let page = 1; page <= totalPages; page++) {
-    const imagesOnPage = await getAllImages(page);
-    totalImages += imagesOnPage.length;
-  }
-  return totalImages;
-};
-
-const statsComments = async () => {
-  let totalComments = 0;
-
-  // Get total pages
-  const totalPages = await getAllPages();
-
-  // Loop through all pages and collect comment counts
-  for (let page = 1; page <= totalPages; page++) {
-    const imagesOnPage = await getAllImages(page);
-
-    //Go through all images on the page, get the length of comments array and add it to totalComments
-    totalComments += imagesOnPage.reduce((sum, image) => sum + image.comments.length, 0);
-  }
- return totalComments
-};
-
-const statsLikes = async () => {
-  let totalComments = 0;
-
-  // Get total pages
-  const totalPages = await getAllPages();
-
-  // Loop through all pages and collect comment counts
-  for (let page = 1; page <= totalPages; page++) {
-    const imagesOnPage = await getAllImages(page);
-
-    //Go through all images on the page, get the length of comments array and add it to totalComments
-    totalComments += imagesOnPage.reduce((sum, image) => sum + image.comments.length, 0);
-  }
- return totalComments
-};
 
 // ===== ALEX Modal Setup =====
 let currentImageIndex = 0;
@@ -284,4 +239,4 @@ commentForm.addEventListener("submit", async (e) => {
 });
 
 createImages();
-statsComments()
+updateStats()
