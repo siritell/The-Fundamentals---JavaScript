@@ -1,7 +1,7 @@
 import "./reset.css";
 import "./style.css";
 import { getAllImages, postComment, postLike, getOneImage, getAllPages } from "./api.js";
-import { updateStats, statsComments, statsLikes, statsImages } from "./stats.js";
+import { updateStats, createTotalLikes, createTotalComments, createTotalImages } from "./stats.js";
 
 const container = document.getElementById("gallery-container");
 

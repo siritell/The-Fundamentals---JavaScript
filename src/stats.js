@@ -51,7 +51,7 @@ const statsLikes = async () => {
 };
 
 export const createTotalLikes = async () => {
-    const statValue = document.getElementById("likeCount")q
+    const statValue = document.getElementById("likeCount")
 
     const value = await statsLikes()
     statValue.textContent = value
