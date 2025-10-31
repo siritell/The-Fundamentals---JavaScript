@@ -455,13 +455,13 @@ h3 {
 
   .modal-comments,
   .comment-form {
-    width: 40%;
-    max-width: 40%;
-  }
+  width: 40%;
+  max-width: 40%;
+  background: inherit; /* keep your original bg */
+}
 
   .modal-comments {
     padding: 24px;
-    background: #fff;
     overflow-y: auto;
     flex-grow: 1;
   }
@@ -475,11 +475,12 @@ h3 {
   }
 
   .comment-form {
-    padding: 24px;
-    border-top: 1px solid transparent;
+    padding: 18px 24px 24px 24px;
     display: flex;
+    flex-direction: column;
     gap: 12px;
-    background: #fff;
+    background: inherit; 
+    border-top: none; 
   }
 
   .comment-form input,
@@ -505,6 +506,17 @@ h3 {
     border: none;
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   }
+
+  /* Navigation arrows lower */
+  .modal-nav {
+    top: 85%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    padding: 12px;
+  }
+
+  .modal-nav.prev { left: 20px; }
+  .modal-nav.next { right: 20px; }
 }
 /******* ALEX MODAL DESKTOP VERSION *******/
 
