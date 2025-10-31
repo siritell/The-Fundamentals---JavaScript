@@ -305,6 +305,7 @@ h3 {
 
 /* Comments box area */
 .modal-comments {
+  color: #000;
   padding: 18px;
   display: flex;
   flex-direction: column;
