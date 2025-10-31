@@ -11,8 +11,6 @@ const container = document.getElementById("gallery-container");
 async function createImages() {
   const gallery = await getAllImages();
 
-  console.log(gallery);
-
   for (const image of gallery) {
     createImage(
       image.image_url,
