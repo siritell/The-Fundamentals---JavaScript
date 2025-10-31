@@ -428,16 +428,13 @@ h3 {
 /*** ALEX css modal*******/
 
 
-/* ---- ALEX  Desktop Split Layout (Image Left / Comments Right) ---- */
+/* ---- ALEX  Desktop Split Layout ---- */
 @media (min-width: 900px) {
-  #image-modal {
-    align-items: center;
-    justify-content: center;
-  }
-
   .modal-content {
     max-width: 1200px;
     width: 90%;
+    height: 85vh;
+    display: flex;
     flex-direction: row;
     border-radius: 20px;
     overflow: hidden;
@@ -453,6 +450,7 @@ h3 {
     max-height: none;
   }
 
+  /* Right panel container: comments + form stacked vertically */
   .modal-comments,
   .comment-form {
     width: 40%;
@@ -461,31 +459,24 @@ h3 {
 
   .modal-comments {
     padding: 24px;
-    background: #fff;
     overflow-y: auto;
     flex-grow: 1;
+    background: inherit; 
   }
 
-  .modal-comments .comment {
-    background: #f4f4f4;
-    padding: 12px 14px;
-    margin-bottom: 12px;
-    border-radius: 8px;
-    font-size: 14px;
-  }
-
+  /* Keep form under comments, same column area */
   .comment-form {
-    padding: 24px;
-    border-top: 1px solid transparent;
+    padding: 20px 24px;
     display: flex;
+    flex-direction: column;
     gap: 12px;
-    background: #fff;
+    background: inherit; 
   }
 
   .comment-form input,
   .comment-form textarea {
     border-radius: 8px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #ddd;
     padding: 12px;
     font-size: 15px;
   }
@@ -496,7 +487,18 @@ h3 {
     padding: 14px 0;
   }
 
-  /* Close button adjustment for new layout */
+  /* Navigation arrows lower */
+  .modal-nav {
+    top: 85%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    padding: 12px;
+  }
+
+  .modal-nav.prev { left: 20px; }
+  .modal-nav.next { right: 20px; }
+
+  /* Close button tidy */
   .modal-close {
     top: 15px;
     right: 15px;
@@ -506,6 +508,7 @@ h3 {
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   }
 }
+
 /******* ALEX MODAL DESKTOP VERSION *******/
 
 /***** ALex LOAD MORE  ****/
