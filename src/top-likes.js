@@ -45,9 +45,7 @@ export const createTopLikes = async () => {
     silverContainer.classList.add("loading")
     bronzeContainer.classList.add("loading")
     const topThree = await topLikes();
-    goldContainer.classList.remove("loading")
-    silverContainer.classList.remove("loading")
-    bronzeContainer.classList.remove("loading")
+
 
     
     //Apply content
@@ -60,5 +58,7 @@ export const createTopLikes = async () => {
     bronzeImage.src = topThree[2].image_url
     bronzeLikes.textContent = topThree[2].likes_count
 
-
+    goldContainer.classList.remove("loading")
+    silverContainer.classList.remove("loading")
+    bronzeContainer.classList.remove("loading")
 }
