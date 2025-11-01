@@ -3,6 +3,27 @@
   color: #ffffff;
   margin: 0.5em;
   font-family: "Parkinsans", sans-serif;
+
+  --color-skeleton: linear-gradient(90deg, #232323 40%, #383838, #232323 60%) right / 300% 100%
+}
+
+@keyframes skeleton-loading {
+  to {
+    background-position: left;
+  }
+}
+
+.stat-box.loading::after, .top-like.loading::after {
+  position:absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  background: var(--color-skeleton);
+  cursor: progress;
+  animation: skeleton-loading 1.5s linear infinite;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
 }
 
 .container {
@@ -26,7 +47,10 @@
   border-radius: 8px;
   padding: 10px 15px;
   color: #fff;
+  position: relative;
 }
+
+
 
 .stat-label {
   font-size: 0.9em;
@@ -72,6 +96,7 @@
   color: #ffffff;
   border-radius: 8px;
   flex: 1;
+  position: relative;
 }
 
 .top-like.gold {
@@ -209,6 +234,7 @@ h3 {
     flex-wrap: nowrap;
     gap: 8px;
   }
+  
   .stat-box {
     min-width: 90px;
     height: 70px;
@@ -221,6 +247,8 @@ h3 {
   .stat-number {
     font-size: 1.3em;
   }
+
+
   .top-likes {
     grid-template-columns: 1fr;
     justify-items: center;

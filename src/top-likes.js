@@ -26,7 +26,7 @@ export const topLikes = async () => {
 
 export const createTopLikes = async () => {
     //Get dom elements
-    const topLikesContainer = document.querySelector(".top-likes")
+    const topLikeContainer = document.querySelector(".top-like")
 
     const goldContainer = document.querySelector(".gold")
     const goldImage = goldContainer.querySelector("img")
@@ -41,9 +41,13 @@ export const createTopLikes = async () => {
     const bronzeLikes = document.getElementById("topLike3")
 
     //Apply loading state and get data
-    topLikesContainer.classList.add("loading")
+    goldContainer.classList.add("loading")
+    silverContainer.classList.add("loading")
+    bronzeContainer.classList.add("loading")
     const topThree = await topLikes();
-    topLikesContainer.classList.remove("loading")
+    goldContainer.classList.remove("loading")
+    silverContainer.classList.remove("loading")
+    bronzeContainer.classList.remove("loading")
 
     
     //Apply content
