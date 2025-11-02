@@ -1,11 +1,10 @@
 import { getAllImages, getAllPages } from "./api.js";
 
+const totalPages = await getAllPages()
+
 //Return total number of images
 const statsImages = async () => {
     let totalImages = 0;
-
-    // Get total pages
-    const totalPages = await getAllPages();
 
     // Loop through all pages and add to totalImages
     for (let page = 1; page <= totalPages; page++) {
@@ -18,9 +17,6 @@ const statsImages = async () => {
 //Return total number of comments
 const statsComments = async () => {
     let totalComments = 0;
-
-    // Get total pages
-    const totalPages = await getAllPages();
 
     // Loop through all pages and collect comment counts
     for (let page = 1; page <= totalPages; page++) {
@@ -35,9 +31,6 @@ const statsComments = async () => {
 //Return total number of likes
 const statsLikes = async () => {
     let totalLikes = 0;
-
-    // Get total pages
-    const totalPages = await getAllPages();
 
     // Loop through all pages and collect like counts
     for (let page = 1; page <= totalPages; page++) {
@@ -62,9 +55,11 @@ export const createTotalLikes = async () => {
 export const createTotalComments = async () => {
     const statValue = document.getElementById("commentCount")
     const statBox = document.querySelector(".comments")
+    
     statBox.classList.add("loading")
     const value = await statsComments()
     statBox.classList.remove("loading")
+    
     statValue.textContent = value
 };
 
