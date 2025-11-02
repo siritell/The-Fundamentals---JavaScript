@@ -1,11 +1,12 @@
-import { getAllImages, getAllPages } from "./api.js";
+import { getAllImages, getAllPages } from "./stats.js";
+import { totalPages } from "./api.js";
 
 //Get all images in one array
 export const topLikes = async () => {
 
 
     // Get total pages
-    const totalPages = await getAllPages();
+    //const totalPages = await getAllPages();
     let allImages = []
 
     // Loop through all pages and push images to new array

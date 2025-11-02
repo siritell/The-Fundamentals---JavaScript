@@ -1,6 +1,6 @@
 import { getAllImages, getAllPages } from "./api.js";
 
-const totalPages = await getAllPages()
+export const totalPages = await getAllPages()
 
 //Return total number of images
 const statsImages = async () => {
