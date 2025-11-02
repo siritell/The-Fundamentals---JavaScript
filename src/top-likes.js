@@ -1,12 +1,9 @@
-import { getAllImages, getAllPages } from "./stats.js";
-import { totalPages } from "./api.js";
+import { getAllImages } from "./api.js";
+import { totalPages } from "./stats.js";
 
 //Get all images in one array
 export const topLikes = async () => {
 
-
-    // Get total pages
-    //const totalPages = await getAllPages();
     let allImages = []
 
     // Loop through all pages and push images to new array
@@ -45,9 +42,9 @@ export const createTopLikes = async () => {
     goldContainer.classList.add("loading")
     silverContainer.classList.add("loading")
     bronzeContainer.classList.add("loading")
+    
+    //Get top three
     const topThree = await topLikes();
-
-
     
     //Apply content
     goldImage.src = topThree[0].image_url
