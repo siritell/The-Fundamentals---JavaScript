@@ -13,7 +13,7 @@
   }
 }
 
-.stat-box.loading::after, .top-like.loading::after {
+.stat-box.loading::after, .top-like.loading::after, .gallery-item.loading::after{
   position:absolute;
   content: "";
   top: 0;
