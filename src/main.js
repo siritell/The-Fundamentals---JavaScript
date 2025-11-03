@@ -9,7 +9,10 @@ const container = document.getElementById("gallery-container");
 // ===== ALEX Modal Setup =====
 
 async function createImages() {
+  const galleryItemLoading = document.createElement("div");
+  galleryItemLoading.classList.add("gallery-item", "loading");
   const gallery = await getAllImages();
+
 
   for (const image of gallery) {
     createImage(
@@ -25,13 +28,17 @@ async function createImages() {
 
 function createImage(src, id, initialLikes, initialComments) {
   const card = document.createElement("div");
-  card.classList.add("gallery-item");
+  card.classList.add("gallery-item", "loading");
   card.setAttribute("data-image-id", id);
 
   const image = document.createElement("img");
   image.src = src;
   image.classList.add("article-image");
   card.appendChild(image);
+
+  image.addEventListener("load", () => {
+    card.classList.remove("loading");
+  });
 
   //ALEX Modal EVENT Save all gallery images for modal navigation
   galleryImages.push({ image_url: src, id });
