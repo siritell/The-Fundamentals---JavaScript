@@ -8,7 +8,7 @@ const container = document.getElementById("gallery-container");
 
 // Alex Pagination state ===
 let currentPage = 1;
-let isLoading = false;
+let isLoading = true;
 
 
 // ===== ALEX Modal Setup =====
@@ -294,6 +294,8 @@ commentForm.addEventListener("submit", async (e) => {
 });
 
 createImages();
+updateStats()
+createTopLikes()
 
 // === ALEX Load More Button ===
 const loadMoreBtn = document.getElementById("load-more");
@@ -303,8 +305,6 @@ loadMoreBtn.addEventListener("click", () => {
   createImages(currentPage);
 });
 
-updateStats()
-createTopLikes()
 
 
 
