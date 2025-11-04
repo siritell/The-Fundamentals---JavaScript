@@ -6,13 +6,18 @@ import { createTopLikes } from "./top-likes.js";
 
 const container = document.getElementById("gallery-container");
 
+// Alex Pagination state ===
+let currentPage = 1;
+let isLoading = false;
+
+
 // ===== ALEX Modal Setup =====
 
-async function createImages() {
-  const galleryItemLoading = document.createElement("div");
-  galleryItemLoading.classList.add("gallery-item", "loading");
-  const gallery = await getAllImages();
+async function createImages(page = 1) {
+  if (isLoading) return;
+  isLoading = true;
 
+  const gallery = await getAllPages(page); // ALEX load a specific page
 
   for (const image of gallery) {
     createImage(
@@ -21,10 +26,11 @@ async function createImages() {
       image.likes_count || 0,
       image.comments_count || 0
     );
-
-    console.log(image.image_url);
   }
+
+  isLoading = false;
 }
+
 
 function createImage(src, id, initialLikes, initialComments) {
   const card = document.createElement("div");
@@ -290,3 +296,13 @@ commentForm.addEventListener("submit", async (e) => {
 createImages();
 updateStats()
 createTopLikes()
+
+
+// === ALEX Load More Button ===
+const loadMoreBtn = document.getElementById("load-more");
+
+loadMoreBtn.addEventListener("click", () => {
+  currentPage++;
+  createImages(currentPage);
+});
+
