@@ -554,6 +554,7 @@ h3 {
   margin-top: 50px;
 }
 .btn_load_more button {
+  cursor: pointer;
   background: #fff;
   text-align: center;
   color: #000;
