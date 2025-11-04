@@ -17,18 +17,14 @@ import { createTopLikes } from "./top-likes.js";
 
 const container = document.getElementById("gallery-container");
 
-
 // ===== ALEX Modal Setup =====
 
 async function createImages(page = 1) {
   if (isLoading) return;
   isLoading = true;
 
-<<<<<<< HEAD
-=======
   const gallery = await getAllPages(page); // ALEX load a specific page
 
->>>>>>> 218b14ab8c412172fdc9c25e7aac482f8d45c30f
   for (const image of gallery) {
     createImage(
       image.image_url,
@@ -40,7 +36,6 @@ async function createImages(page = 1) {
 
   isLoading = false;
 }
-
 
 function createImage(src, id, initialLikes, initialComments) {
   const card = document.createElement("div");
@@ -217,7 +212,6 @@ async function loadComments(id) {
   modalComments.innerHTML = `<h3>Comments</h3>${commentsHTML}`;
 }
 
-
 // ALEX Navigation modal
 btnPrev.addEventListener("click", () => {
   currentImageIndex =
@@ -261,7 +255,6 @@ function updateCommentCount(imageId, increment = 1) {
   }
 }
 
-
 // Laura: comment section with user name and comment text area.
 commentForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -281,7 +274,7 @@ commentForm.addEventListener("submit", async (e) => {
 
     // Reload comments to show the new one
     await loadComments(currentImageId);
-    createTotalComments()
+    createTotalComments();
     // Clear form
     commenterNameInput.value = "";
     commentTextInput.value = "";
@@ -304,17 +297,5 @@ commentForm.addEventListener("submit", async (e) => {
 });
 
 createImages();
-<<<<<<< HEAD
 updateStats();
 createTopLikes();
-=======
-updateStats()
-createTopLikes()
-
-
-
-
-
-
-
->>>>>>> 218b14ab8c412172fdc9c25e7aac482f8d45c30f
