@@ -1,7 +1,18 @@
 import "./reset.css";
 import "./style.css";
-import { getAllImages, postComment, postLike, getOneImage, getAllPages } from "./api.js";
-import { updateStats, createTotalLikes, createTotalComments, createTotalImages } from "./stats.js";
+import {
+  getAllImages,
+  postComment,
+  postLike,
+  getOneImage,
+  getAllPages,
+} from "./api.js";
+import {
+  updateStats,
+  createTotalLikes,
+  createTotalComments,
+  createTotalImages,
+} from "./stats.js";
 import { createTopLikes } from "./top-likes.js";
 
 const container = document.getElementById("gallery-container");
@@ -12,7 +23,6 @@ async function createImages() {
   const galleryItemLoading = document.createElement("div");
   galleryItemLoading.classList.add("gallery-item", "loading");
   const gallery = await getAllImages();
-
 
   for (const image of gallery) {
     createImage(
@@ -86,12 +96,12 @@ function createImage(src, id, initialLikes, initialComments) {
     if (isLiked) {
       solidHeartIcon.style.display = "block";
       likeIcon.style.display = "none";
-      try {
-        await postLike(id);
-        const current = parseInt(likeCountNum.textContent || "0", 10) || 0;
-        likeCountNum.textContent = String(current + 1);
-      } catch (e) {}
-    } else if (!isLiked) {
+
+      const like = await postLike(id);
+
+      const current = parseInt(likeCountNum.textContent || "0", 10) || 0;
+      likeCountNum.textContent = String(current + 1);
+    } else {
       const current = parseInt(likeCountNum.textContent || "0", 10) || 0;
       likeCountNum.textContent = String(current - 1);
 
@@ -268,5 +278,5 @@ commentForm.addEventListener("submit", async (e) => {
 });
 
 createImages();
-updateStats()
-createTopLikes()
+updateStats();
+createTopLikes();
