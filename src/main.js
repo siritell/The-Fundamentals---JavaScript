@@ -9,11 +9,11 @@ const container = document.getElementById("gallery-container");
 
 // ===== ALEX Modal Setup =====
 
-async function createImages(page = 1) {
-  if (isLoading) return;
-  isLoading = true;
+async function createImages() {
+  const galleryItemLoading = document.createElement("div");
+  galleryItemLoading.classList.add("gallery-item", "loading");
+  const gallery = await getAllImages();
 
-  const gallery = await getAllPages(page); // ALEX load a specific page
 
   for (const image of gallery) {
     createImage(
@@ -22,9 +22,9 @@ async function createImages(page = 1) {
       image.likes_count || 0,
       image.comments_count || 0
     );
-  }
 
-  isLoading = false;
+    console.log(image.image_url);
+  }
 }
 
 
