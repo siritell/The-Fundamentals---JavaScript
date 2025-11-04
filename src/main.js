@@ -1,11 +1,21 @@
 import "./reset.css";
 import "./style.css";
-import { getAllImages, postComment, postLike, getOneImage, getAllPages } from "./api.js";
-import { updateStats, createTotalLikes, createTotalComments, createTotalImages } from "./stats.js";
+import {
+  getAllImages,
+  postComment,
+  postLike,
+  getOneImage,
+  getAllPages,
+} from "./api.js";
+import {
+  updateStats,
+  createTotalLikes,
+  createTotalComments,
+  createTotalImages,
+} from "./stats.js";
 import { createTopLikes } from "./top-likes.js";
 
 const container = document.getElementById("gallery-container");
-
 
 // ===== ALEX Modal Setup =====
 
@@ -26,7 +36,6 @@ async function createImages() {
     console.log(image.image_url);
   }
 }
-
 
 function createImage(src, id, initialLikes, initialComments) {
   const card = document.createElement("div");
@@ -88,12 +97,12 @@ function createImage(src, id, initialLikes, initialComments) {
     if (isLiked) {
       solidHeartIcon.style.display = "block";
       likeIcon.style.display = "none";
-      try {
-        await postLike(id);
-        const current = parseInt(likeCountNum.textContent || "0", 10) || 0;
-        likeCountNum.textContent = String(current + 1);
-      } catch (e) {}
-    } else if (!isLiked) {
+
+      const like = await postLike(id);
+
+      const current = parseInt(likeCountNum.textContent || "0", 10) || 0;
+      likeCountNum.textContent = String(current + 1);
+    } else {
       const current = parseInt(likeCountNum.textContent || "0", 10) || 0;
       likeCountNum.textContent = String(current - 1);
 
@@ -203,7 +212,6 @@ async function loadComments(id) {
   modalComments.innerHTML = `<h3>Comments</h3>${commentsHTML}`;
 }
 
-
 // ALEX Navigation modal
 btnPrev.addEventListener("click", () => {
   currentImageIndex =
@@ -247,7 +255,6 @@ function updateCommentCount(imageId, increment = 1) {
   }
 }
 
-
 // Laura: comment section with user name and comment text area.
 commentForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -267,7 +274,7 @@ commentForm.addEventListener("submit", async (e) => {
 
     // Reload comments to show the new one
     await loadComments(currentImageId);
-    createTotalComments()
+    createTotalComments();
     // Clear form
     commenterNameInput.value = "";
     commentTextInput.value = "";
@@ -290,12 +297,5 @@ commentForm.addEventListener("submit", async (e) => {
 });
 
 createImages();
-updateStats()
-createTopLikes()
-
-
-
-
-
-
-
+updateStats();
+createTopLikes();
