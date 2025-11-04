@@ -549,23 +549,22 @@ h3 {
 /******* ALEX MODAL DESKTOP VERSION *******/
 
 /***** ALex LOAD MORE  ****/
-.btn_load_more {
-  width: 100%;
-  margin-top: 50px;
-}
-.btn_load_more button {
+
+
+
+.load-more-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 12px 20px;
+  font-size: 16px;
   cursor: pointer;
   background: #fff;
-  text-align: center;
-  color: #000;
-  margin-left: 40%;
-  border-radius: 40px;
-  border: none;
-  width: 200px;
-  height: 50px;
+  border: 2px solid #000;
+  border-radius: 6px;
 }
 
-.btn_load_more button:hover {
-  background: #acacac;
+.load-more-btn:hover {
+  background: #000;
+  color: #fff;
 }
 /***** ALex LOAD MORE  ****/
