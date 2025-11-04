@@ -294,9 +294,6 @@ commentForm.addEventListener("submit", async (e) => {
 });
 
 createImages();
-updateStats()
-createTopLikes()
-
 
 // === ALEX Load More Button ===
 const loadMoreBtn = document.getElementById("load-more");
@@ -305,4 +302,10 @@ loadMoreBtn.addEventListener("click", () => {
   currentPage++;
   createImages(currentPage);
 });
+
+updateStats()
+createTopLikes()
+
+
+
 
