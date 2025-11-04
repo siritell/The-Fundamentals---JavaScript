@@ -6,10 +6,6 @@ import { createTopLikes } from "./top-likes.js";
 
 const container = document.getElementById("gallery-container");
 
-// Alex Pagination state ===
-let currentPage = 1;
-let isLoading = true;
-
 
 // ===== ALEX Modal Setup =====
 
@@ -297,13 +293,7 @@ createImages();
 updateStats()
 createTopLikes()
 
-// === ALEX Load More Button ===
-const loadMoreBtn = document.getElementById("load-more");
 
-loadMoreBtn.addEventListener("click", () => {
-  currentPage++;
-  createImages(currentPage);
-});
 
 
 
