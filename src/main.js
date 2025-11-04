@@ -185,15 +185,22 @@ async function openImageModal(index, id) {
 
 async function loadComments(id) {
   const data = await getOneImage(id);
+
+  const comments = data.comments || [];
+
+  // ALEX newest comments show first in line
+  const reversed = [...comments].reverse();
+
   const commentsHTML =
-    data.comments && data.comments.length > 0
-      ? data.comments
+    reversed.length > 0
+      ? reversed
           .map((c) => `<p><b>${c.commenter_name}:</b> ${c.comment}</p>`)
           .join("")
       : "<p>No comments yet.</p>";
 
   modalComments.innerHTML = `<h3>Comments</h3>${commentsHTML}`;
 }
+
 
 // ALEX Navigation modal
 btnPrev.addEventListener("click", () => {
