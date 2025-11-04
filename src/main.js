@@ -258,7 +258,7 @@ commentForm.addEventListener("submit", async (e) => {
 
     // Reload comments to show the new one
     await loadComments(currentImageId);
-
+    createTotalComments()
     // Clear form
     commenterNameInput.value = "";
     commentTextInput.value = "";
