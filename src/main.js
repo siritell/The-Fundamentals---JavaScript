@@ -17,13 +17,18 @@ import { createTopLikes } from "./top-likes.js";
 
 const container = document.getElementById("gallery-container");
 
+
 // ===== ALEX Modal Setup =====
 
-async function createImages() {
-  const galleryItemLoading = document.createElement("div");
-  galleryItemLoading.classList.add("gallery-item", "loading");
-  const gallery = await getAllImages();
+async function createImages(page = 1) {
+  if (isLoading) return;
+  isLoading = true;
 
+<<<<<<< HEAD
+=======
+  const gallery = await getAllPages(page); // ALEX load a specific page
+
+>>>>>>> 218b14ab8c412172fdc9c25e7aac482f8d45c30f
   for (const image of gallery) {
     createImage(
       image.image_url,
@@ -31,10 +36,11 @@ async function createImages() {
       image.likes_count || 0,
       image.comments_count || 0
     );
-
-    console.log(image.image_url);
   }
+
+  isLoading = false;
 }
+
 
 function createImage(src, id, initialLikes, initialComments) {
   const card = document.createElement("div");
@@ -195,15 +201,22 @@ async function openImageModal(index, id) {
 
 async function loadComments(id) {
   const data = await getOneImage(id);
+
+  const comments = data.comments || [];
+
+  // ALEX newest comments show first in line
+  const reversed = [...comments].reverse();
+
   const commentsHTML =
-    data.comments && data.comments.length > 0
-      ? data.comments
+    reversed.length > 0
+      ? reversed
           .map((c) => `<p><b>${c.commenter_name}:</b> ${c.comment}</p>`)
           .join("")
       : "<p>No comments yet.</p>";
 
   modalComments.innerHTML = `<h3>Comments</h3>${commentsHTML}`;
 }
+
 
 // ALEX Navigation modal
 btnPrev.addEventListener("click", () => {
@@ -236,6 +249,19 @@ modalImg.addEventListener("click", () => {
   modalImg.classList.toggle("zoomed");
 });
 
+// ALEX >>>> Update comment count everywhere for an image
+function updateCommentCount(imageId, increment = 1) {
+  const card = document.querySelector(`[data-image-id="${imageId}"]`);
+  if (!card) return;
+
+  const commentCountEl = card.querySelector(".comment-count");
+  if (commentCountEl) {
+    const current = parseInt(commentCountEl.textContent || "0", 10);
+    commentCountEl.textContent = String(current + increment);
+  }
+}
+
+
 // Laura: comment section with user name and comment text area.
 commentForm.addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -255,7 +281,7 @@ commentForm.addEventListener("submit", async (e) => {
 
     // Reload comments to show the new one
     await loadComments(currentImageId);
-
+    createTotalComments()
     // Clear form
     commenterNameInput.value = "";
     commentTextInput.value = "";
@@ -278,5 +304,17 @@ commentForm.addEventListener("submit", async (e) => {
 });
 
 createImages();
+<<<<<<< HEAD
 updateStats();
 createTopLikes();
+=======
+updateStats()
+createTopLikes()
+
+
+
+
+
+
+
+>>>>>>> 218b14ab8c412172fdc9c25e7aac482f8d45c30f
