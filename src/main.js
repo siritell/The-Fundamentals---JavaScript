@@ -226,6 +226,19 @@ modalImg.addEventListener("click", () => {
   modalImg.classList.toggle("zoomed");
 });
 
+// ALEX >>>> Update comment count everywhere for an image
+function updateCommentCount(imageId, increment = 1) {
+  const card = document.querySelector(`[data-image-id="${imageId}"]`);
+  if (!card) return;
+
+  const commentCountEl = card.querySelector(".comment-count");
+  if (commentCountEl) {
+    const current = parseInt(commentCountEl.textContent || "0", 10);
+    commentCountEl.textContent = String(current + increment);
+  }
+}
+
+
 // Laura: comment section with user name and comment text area.
 commentForm.addEventListener("submit", async (e) => {
   e.preventDefault();
