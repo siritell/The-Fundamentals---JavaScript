@@ -281,7 +281,7 @@ h1 { font-size: 3em; }
   color: #fff;
 }
 
-/*** ALEX CSS MODAL *******/
+/************************** ALEX CSS MODAL *************************/
 
 #image-modal {
   position: fixed;
@@ -305,7 +305,7 @@ h1 { font-size: 3em; }
   position: relative;
   width: 90%;
   max-width: 1200px;
-  height: 50vh;
+  height: 40vh;
   background: #ffffff;
   border-radius: 18px;
   overflow: hidden;
@@ -344,8 +344,13 @@ h1 { font-size: 3em; }
   flex-direction: column;
   gap: 12px;
   overflow-y: auto;
-  background: none;    
+  background: #f2f2f2;    
   max-height: unset;   
+  padding-bottom: 10px;
+}
+
+.modal-comments h3 {
+  border-bottom: 1px solid #ccc;
   padding-bottom: 10px;
 }
 
