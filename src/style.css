@@ -338,6 +338,15 @@ h1 { font-size: 3em; }
   background: #000;
 }
 
+.modal-nav {
+  background: #000;
+  border: 0;
+  color: #fff;
+  font-size: 33px;
+  cursor: pointer;
+  padding: 0 30px;
+}
+
 /* Right panel area */
 .modal-comments,
 .comment-form {
@@ -459,7 +468,7 @@ h1 { font-size: 3em; }
 
   .modal-content img {
     width: 100%;
-    height: 55vh;             /* big image top section */
+    height: 38vh;             /* big image top section */
   }
 
   .modal-comments,
@@ -469,7 +478,7 @@ h1 { font-size: 3em; }
   }
 
   .modal-comments {
-    max-height: 30vh;
+    max-height: 25vh;
     padding-bottom: 6px;
   }
 
@@ -492,11 +501,11 @@ h1 { font-size: 3em; }
   }
 
   .modal-content img {
-    height: 50vh;
+    height: 38vh;
   }
 
   .modal-comments {
-    max-height: 28vh;
+    max-height: 25vh;
   }
 
   .comment-form input,
