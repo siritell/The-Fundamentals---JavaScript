@@ -152,16 +152,16 @@ modal.style.display = "none";
 modal.innerHTML = `
   <div class="modal-backdrop"></div>
   <div class="modal-content fade-in">
-    <button id="modal-close" class="modal-close">×</button>
-    <button id="modal-prev" class="modal-nav prev">‹</button>
-    <img id="modal-image" src="" alt="Large View" />
-    <button id="modal-next" class="modal-nav next">›</button>
+    <button id="modal-close" class="modal-close">×</button>    
+    <img id="modal-image" src="" alt="Large View" />    
     <div id="modal-comments" class="modal-comments"></div>
     <form id="comment-form" class="comment-form">
       <input type="text" id="commenter-name" placeholder="Your name" required />
       <textarea id="comment-text" placeholder="Write a comment..." rows="3" required></textarea>
       <button type="submit">Post Comment</button>
     </form>
+    <button id="modal-prev" class="modal-nav prev">‹</button>
+    <button id="modal-next" class="modal-nav next">›</button>
   </div>
 `;
 document.body.appendChild(modal);
