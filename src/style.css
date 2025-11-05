@@ -305,7 +305,7 @@ h1 { font-size: 3em; }
   position: relative;
   width: 90%;
   max-width: 1200px;
-  height: 85vh;
+  height: 50vh;
   background: #ffffff;
   border-radius: 18px;
   overflow: hidden;
@@ -434,5 +434,65 @@ h1 { font-size: 3em; }
   from { opacity: 0; transform: translateY(30px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+
+
+/**** ALEX MODAL MOBILE + TABLET RESPONSIVE LAYOUT */
+@media (max-width: 900px) {
+  .modal-content {
+    flex-direction: column;   /* stack */
+    width: 95%;
+    height: 92vh;
+  }
+
+  .modal-content img {
+    width: 100%;
+    height: 55vh;             /* big image top section */
+  }
+
+  .modal-comments,
+  .comment-form {
+    width: 100%;
+    padding: 18px;
+  }
+
+  .modal-comments {
+    max-height: 30vh;
+    padding-bottom: 6px;
+  }
+
+  .comment-form {
+    gap: 10px;
+    border-top: 1px solid #eee;
+  }
+
+  .modal-close {
+    top: 12px;
+    right: 12px;
+  }
+}
+
+/* EXTRA SMALL PHONE SUPPORT */
+@media (max-width: 480px) {
+  .modal-content {
+    height: 96vh;
+    border-radius: 12px;
+  }
+
+  .modal-content img {
+    height: 50vh;
+  }
+
+  .modal-comments {
+    max-height: 28vh;
+  }
+
+  .comment-form input,
+  .comment-form textarea,
+  .comment-form button {
+    font-size: 14px;
+    padding: 12px;
+  }
+}
+
 
 /*** ENDS ALEX CSS MODAL *******/
