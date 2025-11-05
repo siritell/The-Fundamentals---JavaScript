@@ -330,6 +330,14 @@ h1 { font-size: 3em; }
   cursor: zoom-out;
 }
 
+/* modal nav*/
+.modal-nav {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #000;
+}
+
 /* Right panel area */
 .modal-comments,
 .comment-form {
