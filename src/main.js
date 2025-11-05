@@ -24,13 +24,12 @@ async function createImages() {
   galleryItemLoading.classList.add("gallery-item", "loading");
   const gallery = await getAllImages();
 
-
   for (const image of gallery) {
     createImage(
       image.image_url,
       image.id,
       image.likes_count || 0,
-      image.comments_count || 0
+      image.comments.length || 0
     );
 
     console.log(image.image_url);
@@ -153,16 +152,18 @@ modal.style.display = "none";
 modal.innerHTML = `
   <div class="modal-backdrop"></div>
   <div class="modal-content fade-in">
-    <button id="modal-close" class="modal-close">×</button>
-    <button id="modal-prev" class="modal-nav prev">‹</button>
-    <img id="modal-image" src="" alt="Large View" />
-    <button id="modal-next" class="modal-nav next">›</button>
+    <button id="modal-close" class="modal-close">×</button>    
+    <img id="modal-image" src="" alt="Large View" />    
     <div id="modal-comments" class="modal-comments"></div>
     <form id="comment-form" class="comment-form">
       <input type="text" id="commenter-name" placeholder="Your name" required />
       <textarea id="comment-text" placeholder="Write a comment..." rows="3" required></textarea>
       <button type="submit">Post Comment</button>
     </form>
+    <div class="modal-nav-cont">
+      <button id="modal-prev" class="modal-nav prev">‹</button>
+      <button id="modal-next" class="modal-nav next">›</button>
+    </div>
   </div>
 `;
 document.body.appendChild(modal);
