@@ -41,11 +41,12 @@ export const createTopLikes = async () => {
         img.src = topThree[index].image_url;
         likeCount.textContent = topThree[index].likes_count;
         rank.textContent = index + 1; // 1, 2, 3
+        console.log(index)
 
         el.addEventListener("click", async () => {
-            await openImageModal(topThree[index], topThree[index].id);
-            console.log(topThree[index])
+            await openImageModal(index, topThree[index].id, topThree);
         });
+
 
     });
 
