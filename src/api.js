@@ -62,7 +62,7 @@ export const postLike = async (id) => {
 
     return likeData;
   } catch(error) {
-    console.log("Couldn't post like");
+    console.error(error);
   }
 };
 
@@ -79,10 +79,15 @@ export const postComment = async (id, commenter_name, comment) => {
         comment: comment,
       }),
     });
+
+    if (!response.ok) {
+      throw new Error("Couldn't post comment")
+    }
+
     const commentData = await response.json();
 
     return commentData;
-  } catch {
-    console.log("Couldn't post comment");
+  } catch(error) {
+    console.error(error);
   }
 };
