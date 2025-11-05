@@ -24,13 +24,12 @@ async function createImages() {
   galleryItemLoading.classList.add("gallery-item", "loading");
   const gallery = await getAllImages();
 
-
   for (const image of gallery) {
     createImage(
       image.image_url,
       image.id,
       image.likes_count || 0,
-      image.comments_count || 0
+      image.comments.length || 0
     );
 
     console.log(image.image_url);
