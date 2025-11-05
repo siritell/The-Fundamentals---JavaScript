@@ -347,6 +347,11 @@ h1 { font-size: 3em; }
   padding: 0 30px;
 }
 
+#modal-next {
+  float: inline-end;
+}
+
+
 /* Right panel area */
 .modal-comments,
 .comment-form {
