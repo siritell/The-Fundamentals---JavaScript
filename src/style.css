@@ -4,7 +4,7 @@
   color: #000;
   margin: 2em;
   font-family: "Parkinsans", sans-serif;
-  --color-skeleton: linear-gradient(90deg, #232323 40%, #383838, #232323 60%) right / 300% 100%;
+  --color-skeleton: linear-gradient(90deg, #d5d5d5 40%, rgb(237, 237, 237), #d5d5d5 60%) right / 300% 100%;
 }
 
 @keyframes skeleton-loading {
@@ -29,6 +29,7 @@ h1 { font-size: 3em; }
   height: 100%;
   width: 100%;
   border-radius: 8px;
+  z-index: 100;
 }
 
 /* --- Layout Containers --- */
@@ -115,39 +116,54 @@ h1 { font-size: 3em; }
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 15px 20px;
   gap: 20px;
-  color: #000;
+  color: white;
   flex: 1;
   position: relative;
   border-radius: 8px;
   background-color: #f0f0f0;
+  position: relative;
+  overflow: hidden;
+  background: black;
 }
 
 .top-like .rank {
-  font-size: 2em;
-  font-weight: bold;
-  width: 50px;
-  height: 50px;
+  font-size: 1.2em;
+  width: 40px;
+  height: 40px;
+  background-color: black;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  color: #000;
+  color: white;
+  position: relative;
+  z-index: 2;
 }
 
 .top-like img {
-  width: 80px;
-  height: 80px;
+  width: 100%;
   object-fit: cover;
   border-radius: 6px;
+  position: absolute;
+  opacity: 0.7;
 }
 
 .top-like .like-count {
-  font-size: 1.6em;
+  font-size: 1.2em;
   margin-left: auto;
-  color: #000;
+  position: relative;
+  z-index: 2;
+}
+
+.top-like .score {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  z-index: 99;
+  padding: 24px;
 }
 
 /* --- Gallery Section --- */
