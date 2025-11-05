@@ -160,7 +160,7 @@ modal.innerHTML = `
       <textarea id="comment-text" placeholder="Write a comment..." rows="3" required></textarea>
       <button type="submit">Post Comment</button>
     </form>
-    <div class="modal-nav">
+    <div class="modal-nav-cont">
       <button id="modal-prev" class="modal-nav prev">‹</button>
       <button id="modal-next" class="modal-nav next">›</button>
     </div>

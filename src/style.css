@@ -331,7 +331,7 @@ h1 { font-size: 3em; }
 }
 
 /* modal nav*/
-.modal-nav {
+.modal-nav-cont {
   position: absolute;
   bottom: 0;
   width: 100%;
