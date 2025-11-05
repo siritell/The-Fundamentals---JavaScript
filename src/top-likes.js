@@ -1,63 +1,44 @@
 import { getAllImages } from "./api.js";
 import { totalPages } from "./stats.js";
 
-//Get all images in one array
+// Get all images in one array
 export const topLikes = async () => {
-
-    let allImages = []
+    let allImages = [];
 
     // Loop through all pages and push images to new array
     for (let page = 1; page <= totalPages; page++) {
         const imagesOnPage = await getAllImages(page);
-        allImages.push(...imagesOnPage); // Spread all images and push them
+        allImages.push(...imagesOnPage);
     }
 
-     // Sort by likes_count in descending order (highest first)
-     allImages.sort((a, b) => b.likes_count - a.likes_count);
+    // Sort by likes_count descending
+    allImages.sort((a, b) => b.likes_count - a.likes_count);
 
-     // Get top 3
-     const topThree = allImages.slice(0, 3);
- 
-     return topThree;
+    // Get top 3
+    return allImages.slice(0, 3);
+};
 
-}
-
+// Update DOM for top likes
 export const createTopLikes = async () => {
-    //Get dom elements
-    const topLikeContainer = document.querySelector(".top-like")
+    const topLikeElements = document.querySelectorAll(".top-like");
 
-    const goldContainer = document.querySelector(".gold")
-    const goldImage = goldContainer.querySelector("img")
-    const goldLikes = document.getElementById("topLike1")
+    // Apply loading state
+    topLikeElements.forEach(el => el.classList.add("loading"));
 
-    const silverContainer = document.querySelector(".silver")
-    const silverImage = silverContainer.querySelector("img")
-    const silverLikes = document.getElementById("topLike2")
-
-    const bronzeContainer = document.querySelector(".bronze")
-    const bronzeImage = bronzeContainer.querySelector("img")
-    const bronzeLikes = document.getElementById("topLike3")
-
-    //Apply loading state and get data
-    goldContainer.classList.add("loading")
-    silverContainer.classList.add("loading")
-    bronzeContainer.classList.add("loading")
-    
-    //Get top three
     const topThree = await topLikes();
-    
-    //Apply content
-    goldImage.src = topThree[0].image_url
-    goldLikes.textContent = topThree[0].likes_count
 
-    silverImage.src = topThree[1].image_url
-    silverLikes.textContent = topThree[1].likes_count
+    topLikeElements.forEach((el, index) => {
+        if (!topThree[index]) return;
 
-    bronzeImage.src = topThree[2].image_url
-    bronzeLikes.textContent = topThree[2].likes_count
+        const img = el.querySelector("img");
+        const likeCount = el.querySelector(".like-count");
+        const rank = el.querySelector(".rank");
 
-    //Remove loading state
-    goldContainer.classList.remove("loading")
-    silverContainer.classList.remove("loading")
-    bronzeContainer.classList.remove("loading")
-}
+        img.src = topThree[index].image_url;
+        likeCount.textContent = topThree[index].likes_count;
+        rank.textContent = index + 1; // 1, 2, 3
+    });
+
+    // Remove loading state
+    topLikeElements.forEach(el => el.classList.remove("loading"));
+};
