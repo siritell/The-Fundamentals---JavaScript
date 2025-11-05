@@ -1,5 +1,6 @@
 import { getAllImages } from "./api.js";
 import { totalPages } from "./stats.js";
+import { openImageModal } from "./main.js"
 
 // Get all images in one array
 export const topLikes = async () => {
@@ -15,7 +16,9 @@ export const topLikes = async () => {
     allImages.sort((a, b) => b.likes_count - a.likes_count);
 
     // Get top 3
+    console.log(allImages.slice(0, 3))
     return allImages.slice(0, 3);
+
 };
 
 // Update DOM for top likes
@@ -33,12 +36,20 @@ export const createTopLikes = async () => {
         const img = el.querySelector("img");
         const likeCount = el.querySelector(".like-count");
         const rank = el.querySelector(".rank");
+        const topLike = el
 
         img.src = topThree[index].image_url;
         likeCount.textContent = topThree[index].likes_count;
         rank.textContent = index + 1; // 1, 2, 3
+
+        el.addEventListener("click", async () => {
+            await openImageModal(topThree[index], topThree[index].id);
+            console.log(topThree[index])
+        });
+
     });
 
     // Remove loading state
     topLikeElements.forEach(el => el.classList.remove("loading"));
 };
+

@@ -178,7 +178,7 @@ const commentForm = document.getElementById("comment-form");
 const commenterNameInput = document.getElementById("commenter-name");
 const commentTextInput = document.getElementById("comment-text");
 
-async function openImageModal(index, id) {
+export async function openImageModal(index, id) {
   currentImageIndex = index;
   currentImageId = id;
   modal.style.display = "flex";
