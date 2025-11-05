@@ -1,8 +1,47 @@
+/* --- Root & Global Styles --- */
 :root {
+<<<<<<< Updated upstream
   background-color: #000000;
   color: #ffffff;
   margin: 0.5em;
   font-family: "Parkinsans", sans-serif;
+=======
+  background-color: #fff;
+  color: #000;
+  margin: 2em;
+  font-family: "Parkinsans", sans-serif;
+
+  --color-skeleton: linear-gradient(90deg, #232323 40%, #383838, #232323 60%) right / 300% 100%
+}
+
+@keyframes skeleton-loading {
+  to {
+    background-position: left;
+  }
+}
+
+h1 {
+    font-size: 3em;
+}
+
+.stat-box.loading::after, .top-like.loading::after, .gallery-item.loading::after{
+  position:absolute;
+  content: "";
+  top: 0; 
+  left: 0;
+  background: var(--color-skeleton);
+  cursor: progress;
+  animation: skeleton-loading 1.5s linear infinite;
+  height: 100%;
+  width: 100%;
+}
+
+/* --- Layout Containers --- */
+.container {
+  margin-inline: auto;
+  padding: 20px;
+  max-width: 1200px;
+>>>>>>> Stashed changes
 }
 
 .stats-container {
@@ -15,24 +54,46 @@
   max-width: 800px;
 }
 
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  padding: 20px;
+  margin-bottom: 60px;
+}
+
+.header-section {
+  width: 100%;
+  padding: 20px 0;
+  background-color: #f9dada6c;
+}
+
+/* --- Stat Boxes --- */
 .stat-box {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-width: 150px;
+  min-width: 120px;
   height: 100px;
-  border-radius: 8px;
   padding: 10px 15px;
+<<<<<<< Updated upstream
   color: #fff;
+=======
+  color: #000;
+  position: relative;
+>>>>>>> Stashed changes
 }
 
 .stat-label {
-  font-size: 0.9em;
+  font-size: 0.7em;
   margin: 0;
   align-self: flex-start;
 }
 
 .stat-number {
+<<<<<<< Updated upstream
   font-size: 1.5em;
   margin: 0;
   align-self: flex-end;
@@ -41,10 +102,32 @@
 .stat-box.image   { background-color: #0d2e17; }
 .stat-box.comments{ background-color: #2c0b3c; }
 .stat-box.likes   { background-color: #162846; }
+=======
+  font-size: 1.3em;
+}
 
+.stat-box.image {
+  background-color: #9ddef6;
+}
+
+.stat-box.comments {
+  background-color: #c5bcff;
+}
+
+.stat-box.likes {
+  background-color: #a1c9fa;
+}
+>>>>>>> Stashed changes
+
+/* --- Top Likes Section --- */
 .top-likes-container {
+<<<<<<< Updated upstream
   max-width: 1200px;
   width: 100%;
+=======
+  width: 100%;
+  max-width: 1000px;
+>>>>>>> Stashed changes
   margin: 20px auto;
   padding: 0 10px;
 }
@@ -59,6 +142,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
+<<<<<<< Updated upstream
   padding: 15px 30px;
   gap: 15px;
   color: #ffffff;
@@ -69,6 +153,15 @@
 .top-like.two { background-color: #1f3153; }
 .top-like.three { background-color: #1f3153; }
 
+=======
+  padding: 15px 20px;
+  gap: 20px;
+  color: #000;
+  flex: 1;
+  position: relative;
+}
+
+>>>>>>> Stashed changes
 .top-like .rank {
   font-size: 2.2em;
   font-weight: bold;
@@ -79,7 +172,6 @@
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  color: #fff;
 }
 
 .top-like img {
@@ -90,17 +182,34 @@
 }
 
 .top-like .like-count {
+<<<<<<< Updated upstream
   font-size: 1.3em;
   margin-left: auto;
   color: #ffffff;
+=======
+  font-size: 1.6em;
+  margin-left: auto;
+}
+
+/* --- Gallery Section --- */
+h3 {
+  margin-top: 10px;
+  margin-bottom: 20px;
+>>>>>>> Stashed changes
 }
 
 #gallery-container {
   display: grid;
+<<<<<<< Updated upstream
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-auto-rows: auto;
   gap: 16px;
   padding: 10px;
+=======
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 8px;
+  padding: 50px;
+>>>>>>> Stashed changes
 }
 
 .article-card {
@@ -144,6 +253,7 @@
   background-size: 105%;
 }
 
+<<<<<<< Updated upstream
 .like-comment-button {
   background-color: rgba(26, 26, 26, 0.5);
   color: #ffffff;
@@ -158,6 +268,9 @@
   background-color: rgba(26, 26, 26, 0.8);
 }
 
+=======
+/* --- Responsive --- */
+>>>>>>> Stashed changes
 @media (max-width: 600px) {
   .stats-container {
     flex-direction: row;
@@ -167,7 +280,10 @@
     gap: 8px;
     margin: 0 auto;
   }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
   .stat-box {
     min-width: 90px;
     height: 70px;
@@ -182,7 +298,10 @@
   .stat-number {
     font-size: 1.3em;
   }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
   .top-likes {
     flex-direction: column;
     align-items: center;
@@ -318,5 +437,123 @@
   pointer-events: auto;
 }
 
+<<<<<<< Updated upstream
 
 /******* ALEX MODAL CSS CONTRIBUTIONS  ******************/
+=======
+/*** ALEX css modal*******/
+
+
+/* ---- ALEX  Desktop Split Layout (Image Left / Comments Right) ---- */
+@media (min-width: 900px) {
+  #image-modal {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-content {
+    max-width: 1200px;
+    width: 90%;
+    flex-direction: row;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+  }
+
+  .modal-content img {
+    width: 60%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px 0 0 20px;
+    max-height: none;
+  }
+
+  .modal-comments,
+  .comment-form {
+  width: 40%;
+  max-width: 40%;
+}
+
+  .modal-comments {
+    padding: 24px;
+    overflow-y: auto;
+    flex-grow: 1;
+    max-height: 500px;
+  }
+
+  .modal-comments .comment {
+    background: #f4f4f4;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+
+  .comment-form {
+    padding: 70px 24px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background: inherit; 
+    border-top: none; 
+  }
+
+  .comment-form input,
+  .comment-form textarea {
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    padding: 12px;
+    font-size: 15px;
+  }
+
+  .comment-form button {
+    border-radius: 8px;
+    font-size: 15px;
+    padding: 14px 0;
+  }
+
+  /* Close button adjustment for new layout */
+  .modal-close {
+    top: 15px;
+    right: 15px;
+    background: #fff;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+
+  /* Navigation arrows lower */
+  .modal-nav {
+    top: 85%;
+    transform: translateY(-50%);
+    font-size: 40px;
+    padding: 12px;
+  }
+
+  .modal-nav.prev { left: 20px; }
+  .modal-nav.next { right: 20px; }
+}
+/******* ALEX MODAL DESKTOP VERSION *******/
+
+/***** ALex LOAD MORE  ****/
+
+
+
+.load-more-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background: #fff;
+  border: 2px solid #000;
+  border-radius: 6px;
+}
+
+.load-more-btn:hover {
+  background: #000;
+  color: #fff;
+}
+/***** ALex LOAD MORE  ****/
+>>>>>>> Stashed changes

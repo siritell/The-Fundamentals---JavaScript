@@ -13,7 +13,9 @@
 </head>
 
 <body>
+<div class="header-section">
   <div class="container">
+<<<<<<< Updated upstream
     <h1>Frmewrk</h1>
     <div class="stats-container">
       <div class="stat-box image">
@@ -27,28 +29,48 @@
       <div class="stat-box likes">
         <p class="stat-label">Likes</p>
         <p class="stat-number" id="likeCount">0</p>
+=======
+    <div class="header-row">
+      <h1>Frmewrk</h1>
+
+      <div class="stats-container">
+        <div class="stat-box image">
+          <p class="stat-label">Images</p>
+          <p class="stat-number" id="imageCount"></p>
+        </div>
+        <div class="stat-box comments">
+          <p class="stat-label">Comments</p>
+          <p class="stat-number" id="commentCount"></p>
+        </div>
+        <div class="stat-box likes">
+          <p class="stat-label">Likes</p>
+          <p class="stat-number" id="likeCount"></p>
+        </div>
+>>>>>>> Stashed changes
       </div>
     </div>
+
     <h3>Top Likes</h3>
     <div class="top-likes-container">
       <div class="top-likes">
-        <div class="top-like gold">
+        <div class="top-like">
           <span class="rank">1</span>
           <img src="image1.jpg" alt="Top liked image 1">
           <span class="like-count" id="topLike1">0</span>
         </div>
-        <div class="top-like silver">
+        <div class="top-like">
           <span class="rank">2</span>
           <img src="image2.jpg" alt="Top liked image 2">
           <span class="like-count" id="topLike2">0</span>
         </div>
-        <div class="top-like bronze">
+        <div class="top-like">
           <span class="rank">3</span>
           <img src="image3.jpg" alt="Top liked image 3">
           <span class="like-count" id="topLike3">0</span>
         </div>
       </div>
     </div>
+<<<<<<< Updated upstream
     <h3>Gallery</h3>
     <div id="gallery-container">
       <!-- ALEX CONTRIBUTIONS ON MODALS ONLY-->
@@ -69,6 +91,21 @@
 
 
 
+=======
+  </div>
+</div>
+
+<div id="gallery-container">      
+</div>
+
+  <button id="load-more" class="load-more-btn">Load More</button>
+
+    <!-- AXEL MODAL CONTRIBUTIONS -->
+    <div id="image-modal" class="modal hidden">
+      <span id="close-modal">&times;</span>
+      <img id="modal-img" />
+    </div>
+>>>>>>> Stashed changes
   <script type="module" src="/src/main.js"></script>
 </body>
 
