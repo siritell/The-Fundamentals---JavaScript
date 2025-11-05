@@ -56,7 +56,7 @@ function createImage(src, id, initialLikes, initialComments) {
   // ALEX Click image -> open modal w/ correct index
   image.addEventListener("click", () => {
     const index = galleryImages.findIndex((img) => img.id === id);
-    openImageModal(index, id);
+    openImageModal(index, id, galleryImages);
   });
 
   //Laura: Create Like button
@@ -131,7 +131,7 @@ function createImage(src, id, initialLikes, initialComments) {
   commentButton.addEventListener("click", () => {
     // Open modal with enlarged image and show comments section
     const index = galleryImages.findIndex((img) => img.id === id);
-    openImageModal(index, id);
+    openImageModal(index, id, galleryImages);
   });
 
   // Append both buttons to the same container
@@ -178,13 +178,13 @@ const commentForm = document.getElementById("comment-form");
 const commenterNameInput = document.getElementById("commenter-name");
 const commentTextInput = document.getElementById("comment-text");
 
-export async function openImageModal(index, id) {
+export async function openImageModal(index, id, gallery) {
   currentImageIndex = index;
   currentImageId = id;
   modal.style.display = "flex";
   modalImg.classList.remove("zoomed"); // reset zoom
 
-  const imageObj = galleryImages[index];
+  const imageObj = gallery[index];
   modalImg.src = imageObj.image_url;
 
   // Reset form
@@ -218,13 +218,13 @@ btnPrev.addEventListener("click", () => {
   currentImageIndex =
     (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
   const img = galleryImages[currentImageIndex];
-  openImageModal(currentImageIndex, img.id);
+  openImageModal(currentImageIndex, img.id, galleryImages);
 });
 
 btnNext.addEventListener("click", () => {
   currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
   const img = galleryImages[currentImageIndex];
-  openImageModal(currentImageIndex, img.id);
+  openImageModal(currentImageIndex, img.id, galleryImages);
 });
 
 // ALEX Close modal
