@@ -207,6 +207,14 @@ h1 { font-size: 3em; }
   transition: transform 0.25s ease;
 }
 
+.top-like img {
+  transition: transform 0.25s ease;
+}
+
+.top-like:hover img {
+  transform: scale(1.65);
+}
+
 .gallery-item .image-buttons {
   position: absolute;
   bottom: 5%;
