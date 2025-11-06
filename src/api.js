@@ -4,11 +4,16 @@ export const getAllImages = async (page) => {
   try {
     const url = `${baseURL}?page=${page}`;
     const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`${response.status}: Couldn't fetch images`)
+    }
     const galleryData = await response.json();
 
     return galleryData.data;
-  } catch {
-    console.log("Couldn't get images");
+  } catch(error) {
+    alert(error)
+    console.error(error)
   }
 };
 
@@ -16,11 +21,15 @@ export const getOneImage = async (id) => {
   try {
     const url = `${baseURL}/${id}`;
     const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`${response.status}: Couldn't fetch image`)
+    }
     const imageData = await response.json();
 
     return imageData;
   } catch {
-    console.log("Couldn't get images");
+    console.error(error)
   }
 };
 
@@ -30,9 +39,13 @@ export const getAllPages = async () => {
     const response = await fetch(url);
     const pageData = await response.json();
 
+    if(!response.ok) {
+      throw new Error(`${response.status}: Couldn't fetch image count`)
+    }
+
     return pageData.total_pages;
-  } catch {
-    console.log("Couldn't get images");
+  } catch(error) {
+    cconsole.error(error)
   }
 };
 
@@ -40,11 +53,16 @@ export const postLike = async (id) => {
   try {
     const url = `${baseURL}/${id}/like`;
     const response = await fetch(url, { method: "POST" });
+
+    if(!response.ok) {
+      throw new Error(`${response.status}: Couldn't post comment`)
+    }
+
     const likeData = await response.json();
 
     return likeData;
-  } catch {
-    console.log("Couldn't post like");
+  } catch(error) {
+    console.error(error);
   }
 };
 
@@ -61,10 +79,15 @@ export const postComment = async (id, commenter_name, comment) => {
         comment: comment,
       }),
     });
+
+    if (!response.ok) {
+      throw new Error("Couldn't post comment")
+    }
+
     const commentData = await response.json();
 
     return commentData;
-  } catch {
-    console.log("Couldn't post comment");
+  } catch(error) {
+    console.error(error);
   }
 };
