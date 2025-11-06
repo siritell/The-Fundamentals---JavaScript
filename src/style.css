@@ -510,7 +510,7 @@ h1 { font-size: 3em; }
 
   .modal-content img {
     width: 100%;
-    height: 28vh;             /* big image top section */
+    height: 35vh;             /* big image top section */
   }
 
   .modal-comments,
@@ -520,7 +520,7 @@ h1 { font-size: 3em; }
   }
 
   .modal-comments {
-    max-height: 25vh;
+    max-height: 20vh;
     padding-bottom: 6px;
   }
 
