@@ -250,7 +250,7 @@ h1 { font-size: 3em; }
   transition: all 0.4s ease;
 }
 
-.gallery-item:hover {
+.gallery-item:hover img {
   /*background-size: 105%;*/
   transform: scale(1.65);
 }
