@@ -63,6 +63,19 @@ h1 { font-size: 3em; }
   background-color: #f9dada6c;
 }
 
+/*** ALEX LOGO APP ****/
+
+.logo_app {
+  background: #f0f4ff;
+  float: left;
+  width: 350px;
+  border-radius: 20px;
+  margin-bottom: 25px;
+}
+
+/*** ALEX LOGO APP ****/
+
+
 /* --- Stat Boxes --- */
 .stat-box {
   display: flex;
