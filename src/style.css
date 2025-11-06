@@ -14,8 +14,8 @@
 }
 
 body {
-  background-color: #ffffff ;
-  background-image:  linear-gradient(#6d6d6d 1.2000000000000002px, transparent 1.2000000000000002px), linear-gradient(90deg, #6d6d6d 1.2000000000000002px, transparent 1.2000000000000002px), linear-gradient(#6d6d6d 0.6000000000000001px, transparent 0.6000000000000001px), linear-gradient(90deg, #6d6d6d 0.6000000000000001px, #ffffff 0.6000000000000001px);
+  background-color: #ffffff;
+  background-image:  linear-gradient(#f6f6f6 1.2000000000000002px, transparent 1.2000000000000002px), linear-gradient(90deg, #f6f6f6 1.2000000000000002px, transparent 1.2000000000000002px), linear-gradient(#f6f6f6 0.6000000000000001px, transparent 0.6000000000000001px), linear-gradient(90deg, #f6f6f6 0.6000000000000001px, #ffffff 0.6000000000000001px);
   background-size: 30px 30px, 30px 30px, 6px 6px, 6px 6px;
   background-position: -1.2000000000000002px -1.2000000000000002px, -1.2000000000000002px -1.2000000000000002px, -0.6000000000000001px -0.6000000000000001px, -0.6000000000000001px -0.6000000000000001px;
 }
