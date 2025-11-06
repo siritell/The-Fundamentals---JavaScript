@@ -8,25 +8,16 @@ import {
   getAllPages,
 } from "./api.js";
 import {
-  updateStats,
+  createAllStats,
   createTotalLikes,
   createTotalComments,
   createTotalImages,
 } from "./stats.js";
 import { createTopLikes } from "./top-likes.js";
 
-
+createAllStats();
 export const totalPages = await getAllPages()
 const container = document.getElementById("gallery-container");
-
-//Returns array with all images on all pages
-export let allImagesArray = []
-const allPagesImages = async () => {
-  for (let page = 1; page <= totalPages; page++) {
-    const imagesOnPage = await getAllImages(page);
-    allImagesArray.push(...imagesOnPage);
-  }
-}
 
 
 // ===== ALEX Modal Setup =====
@@ -307,9 +298,9 @@ commentForm.addEventListener("submit", async (e) => {
     alert("Failed to post comment. Please try again.");
   }
 });
+// await allPagesImages();
 
 createImages();
-updateStats();
+
 createTopLikes();
-allPagesImages()
-console.log(allImagesArray)
+

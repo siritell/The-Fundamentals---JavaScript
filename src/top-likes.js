@@ -1,6 +1,7 @@
 import { getAllImages } from "./api.js";
-import { totalPages } from "./stats.js";
+import { totalPages } from "./main.js";
 import { openImageModal } from "./main.js"
+import { allImagesArray } from "./stats.js";
 
 // Get all images in one array
 export const topLikes = async () => {
@@ -13,11 +14,10 @@ export const topLikes = async () => {
     }
 
     // Sort by likes_count descending
-    allImages.sort((a, b) => b.likes_count - a.likes_count);
+    allImagesArray.sort((a, b) => b.likes_count - a.likes_count);
 
     // Get top 3
-    console.log(allImages.slice(0, 3))
-    return allImages.slice(0, 3);
+    return allImagesArray.slice(0, 3);
 
 };
 

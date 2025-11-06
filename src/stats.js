@@ -1,56 +1,58 @@
 import { getAllImages, getAllPages } from "./api.js";
-import { allImagesArray } from "./main.js";
+//import { allImagesArray } from "./main.js";
 
 export const totalPages = await getAllPages()
 
+
+
+//Returns array with all images on all pages
+export let allImagesArray = []
+const allPagesImages = async () => {
+  for (let page = 1; page <= totalPages; page++) {
+    const imagesOnPage = await getAllImages(page);
+    allImagesArray.push(...imagesOnPage);
+
+  }
+}
+
+let fetchAll = allPagesImages()
+
+
+
 //Return total number of images
 const statsImages = async () => {
-    let totalImages = 0;
-
-    // Loop through all pages and add to totalImages
-    // for (let page = 1; page <= totalPages; page++) {
-    //     const imagesOnPage = await getAllImages(page);
-    //     totalImages += imagesOnPage.length;
-    // }
+    await fetchAll;
     return allImagesArray.length;
 };
 
 //Return total number of comments
 const statsComments = async () => {
     let totalComments = 0;
-
-    // Loop through all pages and collect comment counts
-    for (let page = 1; page <= totalPages; page++) {
-        const imagesOnPage = await getAllImages(page);
-
-        //Go through all images on the page, get the length of comments array and add it to totalComments
-        totalComments += imagesOnPage.reduce((sum, image) => sum + image.comments.length, 0);
-    }
+    await fetchAll;
+    
+    totalComments += allImagesArray.reduce((sum, image) => sum + image.comments.length, 0);
     return totalComments
 };
 
 //Return total number of likes
 const statsLikes = async () => {
     let totalLikes = 0;
+    await fetchAll;
 
-    // Loop through all pages and collect like counts
-    for (let page = 1; page <= totalPages; page++) {
-        const imagesOnPage = await getAllImages(page);
-
-        //Go through all images on the page, get the length of comments array and add it to totalComments
-        totalLikes += imagesOnPage.reduce((sum, image) => sum + image.likes_count, 0);
-      
-    }
+    totalLikes += allImagesArray.reduce((sum, image) => sum + image.likes_count, 0);
     return totalLikes
 };
 
 export const createTotalLikes = async () => {
     const statValue = document.getElementById("likeCount")
     const statBox = document.querySelector(".likes")
+
+    
     statBox.classList.add("loading")
     const value = await statsLikes()
+    statValue.textContent = value;
     statBox.classList.remove("loading")
-    statValue.textContent = value
+
 };
 
 export const createTotalComments = async () => {
@@ -59,22 +61,24 @@ export const createTotalComments = async () => {
     
     statBox.classList.add("loading")
     const value = await statsComments()
-    statBox.classList.remove("loading")
-    
     statValue.textContent = value
+    statBox.classList.remove("loading")
 };
+
 
 export const createTotalImages = async () => {
     const statValue = document.getElementById("imageCount")
     const statBox = document.querySelector(".image")
+
     statBox.classList.add("loading")
     const value = await statsImages()
-    statBox.classList.remove("loading")
     statValue.textContent = value
+    statBox.classList.remove("loading")
+
 };
 
-export const updateStats = () => {
+export const createAllStats = async () => {
     createTotalComments()
     createTotalImages()
     createTotalLikes()
-}
+};
