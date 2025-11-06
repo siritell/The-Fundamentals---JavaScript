@@ -52,8 +52,6 @@ h1 { font-size: 3em; }
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-bottom: 20px;
-  padding: 20px;
   margin-bottom: 60px;
 }
 
