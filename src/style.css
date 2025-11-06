@@ -197,7 +197,6 @@ h1 { font-size: 3em; }
   overflow: hidden;
   background: no-repeat center;
   background-size: 100%;
-  transition: transform 0.25s ease;
 }
 
 .gallery-item img {
@@ -205,6 +204,7 @@ h1 { font-size: 3em; }
   height: 100%;
   object-fit: cover;
   border-radius: 8px;
+  transition: transform 0.25s ease;
 }
 
 .gallery-item .image-buttons {
@@ -254,7 +254,6 @@ h1 { font-size: 3em; }
 .gallery-item:hover img {
   /*background-size: 105%;*/
   transform: scale(1.65);
-  transition: transform 0.25s ease;
 }
 
 /* --- Responsive Adjustments --- */
