@@ -1,6 +1,6 @@
 /* --- Root & Global Styles --- */
 :root {
-  *background-color: #fff;
+  background-color: #fff;
   color: #000;
   margin: 2em;
   font-family: "Parkinsans", sans-serif;
