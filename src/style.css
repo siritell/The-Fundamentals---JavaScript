@@ -538,6 +538,9 @@ h1 { font-size: 3em; }
 
 /* EXTRA SMALL PHONE SUPPORT */
 @media (max-width: 480px) {
+  .logo_app {
+    margin: 0 auto 24px;
+  }
   .modal-content {
     height: 96vh;
     border-radius: 12px;
