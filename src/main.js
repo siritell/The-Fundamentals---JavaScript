@@ -15,7 +15,19 @@ import {
 } from "./stats.js";
 import { createTopLikes } from "./top-likes.js";
 
+
+export const totalPages = await getAllPages()
 const container = document.getElementById("gallery-container");
+
+//Returns array with all images on all pages
+export let allImagesArray = []
+const allPagesImages = async () => {
+  for (let page = 1; page <= totalPages; page++) {
+    const imagesOnPage = await getAllImages(page);
+    allImagesArray.push(...imagesOnPage);
+  }
+}
+
 
 // ===== ALEX Modal Setup =====
 
@@ -32,7 +44,6 @@ async function createImages() {
       image.comments.length || 0
     );
 
-    console.log(image.image_url);
   }
 }
 
@@ -206,8 +217,8 @@ async function loadComments(id) {
   const commentsHTML =
     reversed.length > 0
       ? reversed
-          .map((c) => `<p><b>${c.commenter_name}:</b> ${c.comment}</p>`)
-          .join("")
+        .map((c) => `<p><b>${c.commenter_name}:</b> ${c.comment}</p>`)
+        .join("")
       : "<p>No comments yet.</p>";
 
   modalComments.innerHTML = `<h3>Comments</h3>${commentsHTML}`;
@@ -300,3 +311,5 @@ commentForm.addEventListener("submit", async (e) => {
 createImages();
 updateStats();
 createTopLikes();
+allPagesImages()
+console.log(allImagesArray)

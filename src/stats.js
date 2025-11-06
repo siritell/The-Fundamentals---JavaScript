@@ -1,4 +1,5 @@
 import { getAllImages, getAllPages } from "./api.js";
+import { allImagesArray } from "./main.js";
 
 export const totalPages = await getAllPages()
 
@@ -7,11 +8,11 @@ const statsImages = async () => {
     let totalImages = 0;
 
     // Loop through all pages and add to totalImages
-    for (let page = 1; page <= totalPages; page++) {
-        const imagesOnPage = await getAllImages(page);
-        totalImages += imagesOnPage.length;
-    }
-    return totalImages;
+    // for (let page = 1; page <= totalPages; page++) {
+    //     const imagesOnPage = await getAllImages(page);
+    //     totalImages += imagesOnPage.length;
+    // }
+    return allImagesArray.length;
 };
 
 //Return total number of comments

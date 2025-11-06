@@ -68,3 +68,13 @@ export const postComment = async (id, commenter_name, comment) => {
     console.log("Couldn't post comment");
   }
 };
+
+//Returns array with all images on all pages
+export let allImagesArray = []
+export const allPagesImages = async () => {
+  for (let page = 1; page <= totalPages; page++) {
+    const imagesOnPage = await getAllImages(page);
+    allImagesArray.push(...imagesOnPage);
+  }
+}
+
