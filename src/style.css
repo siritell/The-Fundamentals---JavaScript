@@ -270,6 +270,7 @@ h1 { font-size: 3em; }
     /*flex-direction: column;*/
     flex-wrap: nowrap;
     gap: 8px;
+    margin: 0 auto;
   }
   .stat-box {
     min-width: 90px;
