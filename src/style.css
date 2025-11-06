@@ -267,7 +267,7 @@ h1 { font-size: 3em; }
 /* --- Responsive Adjustments --- */
 @media (max-width: 600px) {
   .stats-container {
-    flex-direction: column;
+    /*flex-direction: column;*/
     flex-wrap: nowrap;
     gap: 8px;
   }
