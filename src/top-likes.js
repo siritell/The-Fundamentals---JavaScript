@@ -8,17 +8,17 @@ export const topLikes = async () => {
     let allImages = [];
 
     // Loop through all pages and push images to new array
-    for (let page = 1; page <= totalPages; page++) {
-        const imagesOnPage = await getAllImages(page);
-        allImages.push(...imagesOnPage);
-    }
+    // for (let page = 1; page <= totalPages; page++) {
+    //     const imagesOnPage = await getAllImages(page);
+    //     allImages.push(...imagesOnPage);
+    // }
 
     // Sort by likes_count descending
-    allImagesArray.sort((a, b) => b.likes_count - a.likes_count);
+    const sortedArray = allImagesArray.sort((a, b) => b.likes_count - a.likes_count);
 
     // Get top 3
-    return allImagesArray.slice(0, 3);
-
+    console.log(`sorted: ${sortedArray}`)
+    return sortedArray.slice(0, 3);
 };
 
 // Update DOM for top likes
@@ -36,7 +36,6 @@ export const createTopLikes = async () => {
         const img = el.querySelector("img");
         const likeCount = el.querySelector(".like-count");
         const rank = el.querySelector(".rank");
-        const topLike = el
 
         img.src = topThree[index].image_url;
         likeCount.textContent = topThree[index].likes_count;
