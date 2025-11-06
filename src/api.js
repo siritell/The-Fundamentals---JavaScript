@@ -6,14 +6,14 @@ export const getAllImages = async (page) => {
     const response = await fetch(url);
 
     if (!response.ok) {
-      throw new Error(`${response.status}: Couldn't fetch images`)
+      throw new Error(`${response.status}: Couldn't fetch images`);
     }
     const galleryData = await response.json();
 
     return galleryData.data;
-  } catch(error) {
-    alert(error)
-    console.error(error)
+  } catch (error) {
+    alert(error);
+    console.error(error);
   }
 };
 
@@ -23,13 +23,13 @@ export const getOneImage = async (id) => {
     const response = await fetch(url);
 
     if (!response.ok) {
-      throw new Error(`${response.status}: Couldn't fetch image`)
+      throw new Error(`${response.status}: Couldn't fetch image`);
     }
     const imageData = await response.json();
 
     return imageData;
   } catch {
-    console.error(error)
+    console.error(error);
   }
 };
 
@@ -39,13 +39,13 @@ export const getAllPages = async () => {
     const response = await fetch(url);
     const pageData = await response.json();
 
-    if(!response.ok) {
-      throw new Error(`${response.status}: Couldn't fetch image count`)
+    if (!response.ok) {
+      throw new Error(`${response.status}: Couldn't fetch image count`);
     }
 
     return pageData.total_pages;
-  } catch(error) {
-    cconsole.error(error)
+  } catch (error) {
+    cconsole.error(error);
   }
 };
 
@@ -54,15 +54,33 @@ export const postLike = async (id) => {
     const url = `${baseURL}/${id}/like`;
     const response = await fetch(url, { method: "POST" });
 
-    if(!response.ok) {
-      throw new Error(`${response.status}: Couldn't post comment`)
+    if (!response.ok) {
+      throw new Error(`${response.status}: Couldn't post comment`);
     }
 
     const likeData = await response.json();
 
     return likeData;
-  } catch(error) {
+  } catch (error) {
     console.error(error);
+  }
+};
+
+export const deleteLike = async (id) => {
+  try {
+    const url = `${baseURL}/${id}/like`;
+    const response = await fetch(url, { method: "DELETE" });
+
+    if (!response.ok) {
+      throw new Error(`${response.status}: Couldn't delete like`);
+    }
+
+    const likeData = await response.json();
+
+    return likeData;
+  } catch (error) {
+    console.error(error);
+    throw error;
   }
 };
 
@@ -81,13 +99,13 @@ export const postComment = async (id, commenter_name, comment) => {
     });
 
     if (!response.ok) {
-      throw new Error("Couldn't post comment")
+      throw new Error("Couldn't post comment");
     }
 
     const commentData = await response.json();
 
     return commentData;
-  } catch(error) {
+  } catch (error) {
     console.error(error);
   }
 };
