@@ -253,6 +253,7 @@ h1 { font-size: 3em; }
 .gallery-item:hover img {
   /*background-size: 105%;*/
   transform: scale(1.65);
+  transition: transform 0.25s ease;
 }
 
 /* --- Responsive Adjustments --- */
