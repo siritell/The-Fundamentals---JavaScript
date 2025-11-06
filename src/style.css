@@ -23,13 +23,17 @@ h1 { font-size: 3em; }
   content: "";
   top: 0;
   left: 0;
-  background: var(--color-skeleton);
+  /*background: var(--color-skeleton);*/
   cursor: progress;
   animation: skeleton-loading 1.5s linear infinite;
   height: 100%;
   width: 100%;
   border-radius: 8px;
   z-index: 100;
+  background-color: #ffffff;
+  opacity: 0.3;
+  background-image: radial-gradient(#6d6d6d 0.6000000000000001px, #ffffff 0.6000000000000001px);
+  background-size: 12px 12px;
 }
 
 /* --- Layout Containers --- */
