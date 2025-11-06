@@ -197,6 +197,7 @@ h1 { font-size: 3em; }
   overflow: hidden;
   background: no-repeat center;
   background-size: 100%;
+  transition: transform 0.25s ease;
 }
 
 .gallery-item img {
