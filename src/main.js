@@ -4,6 +4,7 @@ import {
   getAllImages,
   postComment,
   postLike,
+  deleteLike,
   getOneImage,
   getAllPages,
 } from "./api.js";
@@ -92,6 +93,7 @@ function createImage(src, id, initialLikes, initialComments) {
   // Change to solid heart icon when clicked
   let isLiked = false;
   likeButton.addEventListener("click", async () => {
+    const previousState = isLiked;
     isLiked = !isLiked;
 
     // Show/hide icons based on like state
@@ -99,16 +101,34 @@ function createImage(src, id, initialLikes, initialComments) {
       solidHeartIcon.style.display = "block";
       likeIcon.style.display = "none";
 
-      const like = await postLike(id);
-
-      const current = parseInt(likeCountNum.textContent || "0", 10) || 0;
-      likeCountNum.textContent = String(current + 1);
+      try {
+        const like = await postLike(id);
+        const current = parseInt(likeCountNum.textContent || "0", 10) || 0;
+        likeCountNum.textContent = String(current + 1);
+        console.log("LIKED:", like);
+      } catch (error) {
+        isLiked = previousState;
+        solidHeartIcon.style.display = "none";
+        likeIcon.style.display = "block";
+        console.error("Error liking:", error);
+        alert("Failed to like image. Please try again.");
+      }
     } else {
-      const current = parseInt(likeCountNum.textContent || "0", 10) || 0;
-      likeCountNum.textContent = String(current - 1);
-
       solidHeartIcon.style.display = "none";
       likeIcon.style.display = "block";
+
+      try {
+        const unlike = await deleteLike(id);
+        const current = parseInt(likeCountNum.textContent || "0", 10) || 0;
+        likeCountNum.textContent = String(current - 1);
+        console.log("UNLIKED:", unlike);
+      } catch (error) {
+        isLiked = previousState;
+        solidHeartIcon.style.display = "block";
+        likeIcon.style.display = "none";
+        console.error("Error unliking:", error);
+        alert("Failed to unlike image. Please try again.");
+      }
     }
   });
 
