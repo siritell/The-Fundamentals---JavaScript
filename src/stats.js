@@ -1,21 +1,7 @@
-import { getAllImages, getAllPages } from "./api.js";
+import { getAllImages, getAllPages, fetchAll, allImagesArray } from "./api.js";
 //import { allImagesArray } from "./main.js";
 
 export const totalPages = await getAllPages()
-
-
-
-//Returns array with all images on all pages
-export let allImagesArray = []
-const allPagesImages = async () => {
-  for (let page = 1; page <= totalPages; page++) {
-    const imagesOnPage = await getAllImages(page);
-    allImagesArray.push(...imagesOnPage);
-
-  }
-}
-
-let fetchAll = allPagesImages()
 
 
 
@@ -78,6 +64,7 @@ export const createTotalImages = async () => {
 };
 
 export const createAllStats = async () => {
+    await fetchAll;
     createTotalComments()
     createTotalImages()
     createTotalLikes()

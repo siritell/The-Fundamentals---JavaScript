@@ -301,5 +301,6 @@ commentForm.addEventListener("submit", async (e) => {
 // await allPagesImages();
 
 createImages();
+
 createTopLikes();
 
