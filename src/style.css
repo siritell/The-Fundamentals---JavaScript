@@ -173,8 +173,8 @@ h3 { font-size: 1.3em; font-weight: 400; }
   padding: 24px;
 }
 
-/* Gallery Section */
-#gallery-container {
+/* --- Gallery Section --- */
+#gallery-container, #gallery-container-loading {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 10px;
@@ -358,14 +358,14 @@ h3 { font-size: 1.3em; font-weight: 400; }
   width: 65%;          
   height: 100%;        
   object-fit: cover;
-  cursor: zoom-in;
-  transition: transform 0.25s ease;
+  /*cursor: zoom-in;
+  transition: transform 0.25s ease;*/
 }
 
-.modal-content img.zoomed {
+/*.modal-content img.zoomed {
   transform: scale(1.65);
   cursor: zoom-out;
-}
+}*/
 
 /* modal nav*/
 .modal-nav-cont {
@@ -490,6 +490,44 @@ h3 { font-size: 1.3em; font-weight: 400; }
 .modal-close:hover {
   transform: scale(1.12);
 }
+
+/***** MODAL LIKE BTN***/
+#modal-like-button {
+  /* Position over the image */
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+
+  /* Style it */
+  background-color: rgba(0, 0, 0, 0.35);
+  border: none;
+  border-radius: 20px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: white;
+}
+
+#modal-like-button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#modal-like-button .like-count {
+  color: white;
+  margin-right: 6px;
+  font-weight: bold;
+}
+
+#modal-like-button .like-icon,
+#modal-like-button .solid-heart-icon {
+  width: 20px;
+  height: 20px;
+  fill: #ff0000; /* Makes the SVG red */
+}
+
+/*************MODAL LIKE BTN ENDS **********/
 
 /* Animation */
 @keyframes fadeUp {
