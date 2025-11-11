@@ -168,7 +168,7 @@ h3 { font-size: 1.3em; font-weight: 400; }
   z-index: 2;
   position: relative;
 }
-.like-count::before {
+.score .like-count::before {
   content: "";
   position: absolute;
   top: 4px;
