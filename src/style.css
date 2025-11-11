@@ -507,7 +507,7 @@ h1 { font-size: 3em; }
   z-index: 1000;
 
   /* Style it */
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.35);
   border: none;
   border-radius: 20px;
   padding: 6px 10px;
