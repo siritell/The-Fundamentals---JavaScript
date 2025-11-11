@@ -2,7 +2,6 @@
 :root {
   background-color: #fff;
   color: #000;
-  margin: 2em;
   font-family: "Parkinsans", sans-serif;
   --color-skeleton: linear-gradient(90deg, #d5d5d5 40%, rgb(237, 237, 237), #d5d5d5 60%) right / 300% 100%;
 }
@@ -270,6 +269,7 @@ h1 { font-size: 3em; }
 
 /* --- Responsive Adjustments --- */
 @media (min-width: 360px) and (max-width: 600px) {
+  
   .stats-container {
     display: flex;
     gap: 8px;
