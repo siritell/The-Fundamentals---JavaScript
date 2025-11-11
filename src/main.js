@@ -21,12 +21,12 @@ export const totalPages = await getAllPages();
 const container = document.getElementById("gallery-container");
 
 // Laura:Load More Button
-let currentPage = 1;
+let currentPage = 0;
 const loadMoreButton = document.getElementById("load-more");
 
 // ===== ALEX Modal Setup =====
 
-async function createImages(page = 1) {
+async function createImages(page) {
   const gallery = await getAllImages(page);
 
   for (const image of gallery) {
@@ -43,7 +43,17 @@ async function createImages(page = 1) {
     loadMoreButton.style.display = "none";
   }
 }
-createImages(1);
+
+// Laura: Load initial pages (1 and 2)
+async function loadInitialPages() {
+  await createImages(1);
+  if (totalPages >= 2) {
+    await createImages(2);
+    currentPage = 2; // Set to 2 after loading pages 1 and 2
+  } else {
+    currentPage = 1;
+  }
+}
 
 // Laura: event listener for load-more-button functionality
 loadMoreButton.addEventListener("click", async () => {
@@ -411,15 +421,7 @@ commentForm.addEventListener("submit", async (e) => {
 });
 // await allPagesImages();
 
-// Load initial page
-createImages(1);
-
-// Load More button functionality
-loadMoreButton.addEventListener("click", async () => {
-  if (currentPage < totalPages) {
-    currentPage++;
-    await createImages(currentPage);
-  }
-});
+// Load initial pages (1 and 2)
+loadInitialPages();
 
 createTopLikes();
