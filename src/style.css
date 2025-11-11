@@ -88,9 +88,8 @@ h3 { font-size: 1.3em; font-weight: 400; }
 }
 
 .stat-label {
-  font-size: 0.7em;
+  font-size: 0.9em;
   margin: 0;
-  align-self: flex-start;
 }
 
 .stat-number {
@@ -269,21 +268,31 @@ h3 { font-size: 1.3em; font-weight: 400; }
 }
 
 /* Responsive Adjustments */
-@media (min-width: 360px) and (max-width: 600px) {
-  
+@media (min-width: 100px) and (max-width: 780px) {
+  .logo_app {
+    float: none;
+    margin: 0 auto 24px auto; /* centers the logo */
+    width: 80%; /* responsive width */
+    max-width: 300px; /* optional limit */
+    display: block;
+  }
   .stats-container {
     display: flex;
+    justify-content: center;
     gap: 8px;
+    flex-wrap: wrap;
     margin: 0 auto;
   }
   .stat-box {
-    min-width: 90px;
-    height: 70px;
-    padding: 6px 8px;
+    min-width: 100px;
+    height: 90px;
     text-align: center;
   }
-  .stat-label { font-size: 0.75em; }
-  .stat-number { font-size: 1.3em; }
+  .stat-label { 
+    font-size: 0.75em;
+    text-align: center;
+  }
+  .stat-number { font-size: 1.1em; }
 
   .top-likes {
     grid-template-columns: 1fr;
@@ -292,7 +301,6 @@ h3 { font-size: 1.3em; font-weight: 400; }
   .top-like {
     width: 90%;
   }
-  
   .top-like .rank {
     width: 36px;
     height: 36px;
@@ -551,23 +559,19 @@ h3 { font-size: 1.3em; font-weight: 400; }
     width: 100%;
     height: 35vh;
   }
-
   .modal-comments,
   .comment-form {
     width: 100%;
     padding: 18px;
   }
-
   .modal-comments {
     max-height: 20vh;
     padding-bottom: 6px;
   }
-
   .comment-form {
     gap: 10px;
     border-top: 1px solid #eee;
   }
-
   .modal-close {
     top: 12px;
     right: 12px;
@@ -577,21 +581,18 @@ h3 { font-size: 1.3em; font-weight: 400; }
 /* EXTRA SMALL PHONE SUPPORT */
 @media (max-width: 480px) {
   .logo_app {
-    margin: 0 auto 24px;
+    margin: 0 auto 8px;
   }
   .modal-content {
     height: 96vh;
     border-radius: 12px;
   }
-
   .modal-content img {
     height: 28vh;
   }
-
   .modal-comments {
     max-height: 25vh;
   }
-
   .comment-form input,
   .comment-form textarea,
   .comment-form button {
