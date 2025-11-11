@@ -271,9 +271,9 @@ h3 { font-size: 1.3em; font-weight: 400; }
 @media (min-width: 100px) and (max-width: 780px) {
   .logo_app {
     float: none;
-    margin: 0 auto 24px auto; /* centers the logo */
-    width: 80%; /* responsive width */
-    max-width: 300px; /* optional limit */
+    margin: 0 auto 24px auto;
+    width: 80%;
+    max-width: 300px;
     display: block;
   }
   .stats-container {
@@ -636,7 +636,7 @@ h3 { font-size: 1.3em; font-weight: 400; }
   opacity: 1;
 }
 
-/* Responsive BAck to top btn */
+/* Responsive Back to top btn */
 @media (max-width: 600px) {
   #back-to-top {
     width: 42px;
@@ -646,4 +646,3 @@ h3 { font-size: 1.3em; font-weight: 400; }
     font-size: 18px;
   }
 }
-
