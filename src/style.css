@@ -2,7 +2,6 @@
 :root {
   background-color: #fff;
   color: #000;
-  margin: 2em;
   font-family: "Parkinsans", sans-serif;
   --color-skeleton: linear-gradient(90deg, #d5d5d5 40%, rgb(237, 237, 237), #d5d5d5 60%) right / 300% 100%;
 }
@@ -58,7 +57,6 @@ h1 { font-size: 3em; }
 .header-section {
   width: 100%;
   padding: 20px 0;
-  background-color: #f9dada6c;
 }
 
 /*** ALEX LOGO APP ****/
@@ -114,7 +112,6 @@ h1 { font-size: 3em; }
   width: 100%;
   max-width: 1200px;
   margin: 40px auto;
-  padding: 0;
 }
 
 .top-likes {
@@ -128,14 +125,14 @@ h1 { font-size: 3em; }
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
-  color: white;
+  color: #fff;
   flex: 1;
   cursor: pointer;
   position: relative;
   border-radius: 8px;
   position: relative;
   overflow: hidden;
-  background: black;
+  background: #000;
   cursor: pointer;
 }
 
@@ -143,13 +140,13 @@ h1 { font-size: 3em; }
   font-size: 1.2em;
   width: 40px;
   height: 40px;
-  background-color: black;
+  background-color: #000;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  color: white;
+  color: #fff;
   position: relative;
   z-index: 2;
 }
@@ -183,6 +180,8 @@ h1 { font-size: 3em; }
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 10px;
+  padding-top: 72px;
+  padding-bottom: 28px;
 }
 
 .gallery-item {
@@ -229,8 +228,8 @@ h1 { font-size: 3em; }
 }
 
 .like-comment-button {
-  background-color: rgba(26, 26, 26, 0.5);
-  color: #ffffff;
+  background-color: #1a1a1a80;
+  color: #fff;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -242,7 +241,7 @@ h1 { font-size: 3em; }
 }
 
 .like-comment-button:hover {
-  background-color: rgba(26, 26, 26, 0.8);
+  background-color: #1a1a1a80;
 }
 
 .like-comment-button .like-count,
@@ -269,10 +268,10 @@ h1 { font-size: 3em; }
 }
 
 /* --- Responsive Adjustments --- */
-@media (max-width: 600px) {
+@media (min-width: 360px) and (max-width: 600px) {
+  
   .stats-container {
-    /*flex-direction: column;*/
-    flex-wrap: nowrap;
+    display: flex;
     gap: 8px;
     margin: 0 auto;
   }
@@ -292,14 +291,11 @@ h1 { font-size: 3em; }
   .top-like {
     width: 90%;
   }
-  /*.top-like img {
-    width: 60px;
-    height: 60px;
-  }*/
+  
   .top-like .rank {
-    width: 40px;
-    height: 40px;
-    font-size: 1.5em;
+    width: 36px;
+    height: 36px;
+    font-size: 1.2em;
   }
   .top-like .like-count {
     font-size: 1em;
@@ -313,14 +309,16 @@ h1 { font-size: 3em; }
   padding: 12px 20px;
   font-size: 16px;
   cursor: pointer;
-  background: #fff;
-  border: 2px solid #000;
+  background: #000;
+  color: #fff;
   border-radius: 6px;
+
 }
 
 .load-more-btn:hover {
-  background: #000;
-  color: #fff;
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
 }
 
 /************************** ALEX CSS MODAL *************************/
