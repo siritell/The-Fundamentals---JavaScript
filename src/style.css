@@ -14,6 +14,8 @@
 
 h1 { font-size: 3em; }
 
+h3 { font-size: 1.3em; font-weight: 400; } 
+
 /* Skeleton Loading */
 .stat-box.loading::after,
 .top-like.loading::after,
@@ -31,7 +33,7 @@ h1 { font-size: 3em; }
   z-index: 100;
 }
 
-/* --- Layout Containers --- */
+/* Layout Containers */
 .container {
   margin-inline: auto;
   padding: 20px;
@@ -51,7 +53,7 @@ h1 { font-size: 3em; }
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
 }
 
 .header-section {
@@ -59,8 +61,7 @@ h1 { font-size: 3em; }
   padding: 20px 0;
 }
 
-/*** ALEX LOGO APP ****/
-
+/* ALEX LOGO APP */
 .logo_app {
   background: #fff;
   float: left;
@@ -69,10 +70,7 @@ h1 { font-size: 3em; }
   margin-bottom: 24px;
 }
 
-/*** ALEX LOGO APP ****/
-
-
-/* --- Stat Boxes --- */
+/* Stat Boxes */
 .stat-box {
   display: flex;
   flex-direction: column;
@@ -107,11 +105,11 @@ h1 { font-size: 3em; }
   background-color: #a1c9fa;
 }
 
-/* --- Top Likes Section --- */
+/* Top Likes Section */
 .top-likes-container {
   width: 100%;
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 20px auto;
 }
 
 .top-likes {
@@ -263,11 +261,10 @@ h1 { font-size: 3em; }
 }
 
 .gallery-item:hover img {
-  /*background-size: 105%;*/
   transform: scale(1.1);
 }
 
-/* --- Responsive Adjustments --- */
+/* Responsive Adjustments */
 @media (min-width: 360px) and (max-width: 600px) {
   
   .stats-container {
@@ -302,7 +299,7 @@ h1 { font-size: 3em; }
   }
 }
 
-/* --- Load More Button --- */
+/* Load More Button */
 .load-more-btn {
   display: block;
   margin: 20px auto;
@@ -390,8 +387,6 @@ h1 { font-size: 3em; }
 #modal-next {
   float: inline-end;
 }
-
-
 /* Right panel area */
 .modal-comments,
 .comment-form {
@@ -540,18 +535,17 @@ h1 { font-size: 3em; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-
 /**** ALEX MODAL MOBILE + TABLET RESPONSIVE LAYOUT */
 @media (max-width: 900px) {
   .modal-content {
-    flex-direction: column;   /* stack */
+    flex-direction: column;
     width: 95%;
     height: 92vh;
   }
 
   .modal-content img {
     width: 100%;
-    height: 35vh;             /* big image top section */
+    height: 35vh;
   }
 
   .modal-comments,
@@ -601,6 +595,3 @@ h1 { font-size: 3em; }
     padding: 12px;
   }
 }
-
-
-/*** ENDS ALEX CSS MODAL *******/
