@@ -1,6 +1,6 @@
 const baseURL = "https://image-feed-api.vercel.app/api/images";
 
-export const getAllImages = async (page) => {
+export const getAllImages = async (page = 1) => {
   try {
     const url = `${baseURL}?page=${page}`;
     const response = await fetch(url);
@@ -111,13 +111,13 @@ export const postComment = async (id, commenter_name, comment) => {
 };
 
 //Returns array with all images on all pages
-export let allImagesArray = []
+export let allImagesArray = [];
 const allPagesImages = async () => {
-  const totalPages = await getAllPages()
+  const totalPages = await getAllPages();
   for (let page = 1; page <= totalPages; page++) {
     const imagesOnPage = await getAllImages(page);
     allImagesArray.push(...imagesOnPage);
   }
-}
-export let fetchAll = allPagesImages()
-console.log(allImagesArray)
+};
+export let fetchAll = allPagesImages();
+console.log(allImagesArray);

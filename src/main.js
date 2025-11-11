@@ -20,12 +20,14 @@ createAllStats();
 export const totalPages = await getAllPages();
 const container = document.getElementById("gallery-container");
 
+// Laura:Load More Button
+let currentPage = 1;
+const loadMoreButton = document.getElementById("load-more");
+
 // ===== ALEX Modal Setup =====
 
-async function createImages() {
-  const galleryItemLoading = document.createElement("div");
-  galleryItemLoading.classList.add("gallery-item");
-  const gallery = await getAllImages();
+async function createImages(page = 1) {
+  const gallery = await getAllImages(page);
 
   for (const image of gallery) {
     createImage(
@@ -35,8 +37,23 @@ async function createImages() {
       image.comments.length || 0
     );
   }
-}
 
+  // Laura: Hide load-morebutton when its the end of the gallery.
+  if (currentPage >= totalPages) {
+    loadMoreButton.style.display = "none";
+  }
+}
+createImages(1);
+
+// Laura: event listener for load-more-button functionality
+loadMoreButton.addEventListener("click", async () => {
+  if (currentPage < totalPages) {
+    currentPage++;
+    await createImages(currentPage);
+  }
+});
+
+// ===== ALEX createImage function =====
 function createImage(src, id, initialLikes, initialComments) {
   const card = document.createElement("div");
   card.classList.add("gallery-item");
@@ -269,8 +286,7 @@ export async function openImageModal(index, id, gallery) {
   const card = document.querySelector(`[data-image-id="${id}"]`);
   if (card) {
     const isCurrentlyLiked = card.dataset.isLiked === "true";
-    const currentLikes =
-      card.querySelector(".like-count")?.textContent || "0";
+    const currentLikes = card.querySelector(".like-count")?.textContent || "0";
 
     modalLikeCount.textContent = currentLikes;
     if (isCurrentlyLiked) {
@@ -395,6 +411,15 @@ commentForm.addEventListener("submit", async (e) => {
 });
 // await allPagesImages();
 
-createImages();
+// Load initial page
+createImages(1);
+
+// Load More button functionality
+loadMoreButton.addEventListener("click", async () => {
+  if (currentPage < totalPages) {
+    currentPage++;
+    await createImages(currentPage);
+  }
+});
 
 createTopLikes();
