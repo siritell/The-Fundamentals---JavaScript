@@ -212,7 +212,7 @@ h1 { font-size: 3em; }
 }
 
 .top-like:hover img {
-  transform: scale(1.65);
+  transform: scale(1.1);
 }
 
 .gallery-item .image-buttons {
@@ -261,7 +261,7 @@ h1 { font-size: 3em; }
 
 .gallery-item:hover img {
   /*background-size: 105%;*/
-  transform: scale(1.65);
+  transform: scale(1.1);
 }
 
 /* --- Responsive Adjustments --- */
