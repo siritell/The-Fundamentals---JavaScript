@@ -20,12 +20,14 @@ createAllStats();
 export const totalPages = await getAllPages();
 const container = document.getElementById("gallery-container");
 
+// Laura:Load More Button
+let currentPage = 1;
+const loadMoreButton = document.getElementById("load-more");
+
 // ===== ALEX Modal Setup =====
 
-async function createImages() {
-  const galleryItemLoading = document.createElement("div");
-  galleryItemLoading.classList.add("gallery-item");
-  const gallery = await getAllImages();
+async function createImages(page = 1) {
+  const gallery = await getAllImages(page);
 
   for (const image of gallery) {
     createImage(
@@ -35,7 +37,19 @@ async function createImages() {
       image.comments.length || 0
     );
   }
+
+  // Update button visibility after loading
+  if (currentPage >= totalPages) {
+    loadMoreButton.style.display = "none";
+  }
 }
+createImages(1);
+loadMoreButton.addEventListener("click", async () => {
+  if (currentPage < totalPages) {
+    currentPage++;
+    await createImages(currentPage);
+  }
+});
 
 function createImage(src, id, initialLikes, initialComments) {
   const card = document.createElement("div");
@@ -269,8 +283,7 @@ export async function openImageModal(index, id, gallery) {
   const card = document.querySelector(`[data-image-id="${id}"]`);
   if (card) {
     const isCurrentlyLiked = card.dataset.isLiked === "true";
-    const currentLikes =
-      card.querySelector(".like-count")?.textContent || "0";
+    const currentLikes = card.querySelector(".like-count")?.textContent || "0";
 
     modalLikeCount.textContent = currentLikes;
     if (isCurrentlyLiked) {
@@ -395,6 +408,15 @@ commentForm.addEventListener("submit", async (e) => {
 });
 // await allPagesImages();
 
-createImages();
+// Load initial page
+createImages(1);
+
+// Load More button functionality
+loadMoreButton.addEventListener("click", async () => {
+  if (currentPage < totalPages) {
+    currentPage++;
+    await createImages(currentPage);
+  }
+});
 
 createTopLikes();
