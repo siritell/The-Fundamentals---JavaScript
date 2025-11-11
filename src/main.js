@@ -25,7 +25,7 @@ const container = document.getElementById("gallery-container");
 
 async function createImages() {
   const galleryItemLoading = document.createElement("div");
-  galleryItemLoading.classList.add("gallery-item", "loading");
+  galleryItemLoading.classList.add("gallery-item");
   const gallery = await getAllImages();
 
   for (const image of gallery) {
@@ -41,7 +41,7 @@ async function createImages() {
 
 function createImage(src, id, initialLikes, initialComments) {
   const card = document.createElement("div");
-  card.classList.add("gallery-item", "loading");
+  card.classList.add("gallery-item");
   card.setAttribute("data-image-id", id);
 
   const image = document.createElement("img");
@@ -49,8 +49,11 @@ function createImage(src, id, initialLikes, initialComments) {
   image.classList.add("article-image");
   card.appendChild(image);
 
+  const loadingContainer = document.getElementById("gallery-container-loading");
+
   image.addEventListener("load", () => {
-    card.classList.remove("loading");
+    //card.classList.remove("loading");
+    loadingContainer.style.display = "none";
   });
 
   //ALEX Modal EVENT Save all gallery images for modal navigation
