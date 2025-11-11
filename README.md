@@ -28,13 +28,10 @@ Ensure that **Node.js** is installed on your system.
 1. Clone this repository:   
     git clone <https://github.com/siritell/The-Fundamentals---JavaScript.git>
 
-2. Navigate into the project folder:
-    cd frmework
-
-3. Install dependencies (if any):
+2. Install dependencies (if any):
     npm install
 
-4. Start the development server:
+3. Start the development server:
     npm run dev
 
-5. Open your browser and go to the address shown in your terminal.
+4. Open your browser and go to the address shown in your terminal.
