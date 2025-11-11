@@ -269,10 +269,9 @@ h1 { font-size: 3em; }
 }
 
 /* --- Responsive Adjustments --- */
-@media (max-width: 600px) {
+@media (min-width: 360px) and (max-width: 600px) {
   .stats-container {
-    /*flex-direction: column;*/
-    flex-wrap: nowrap;
+    display: flex;
     gap: 8px;
     margin: 0 auto;
   }
@@ -294,9 +293,9 @@ h1 { font-size: 3em; }
   }
   
   .top-like .rank {
-    width: 40px;
-    height: 40px;
-    font-size: 1.5em;
+    width: 36px;
+    height: 36px;
+    font-size: 1.2em;
   }
   .top-like .like-count {
     font-size: 1em;
