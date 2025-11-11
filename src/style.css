@@ -531,7 +531,7 @@ h1 { font-size: 3em; }
 #modal-like-button .solid-heart-icon {
   width: 20px;
   height: 20px;
-  filter: invert(1); /* Makes the SVG white */
+  fill: #ff0000; /* Makes the SVG red */
 }
 
 /*************MODAL LIKE BTN ENDS **********/
