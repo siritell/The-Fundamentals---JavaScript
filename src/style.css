@@ -502,9 +502,9 @@ h1 { font-size: 3em; }
 #modal-like-button {
   /* Position over the image */
   position: absolute;
-  top: 20px;
-  right: 60px; /* Adjust to not overlap the close button */
-  z-index: 15;
+  bottom: 70px;
+  left: 20px;
+  z-index: 1000;
 
   /* Style it */
   background-color: rgba(0, 0, 0, 0.5);
