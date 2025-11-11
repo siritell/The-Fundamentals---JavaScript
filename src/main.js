@@ -17,9 +17,8 @@ import {
 import { createTopLikes } from "./top-likes.js";
 
 createAllStats();
-export const totalPages = await getAllPages()
+export const totalPages = await getAllPages();
 const container = document.getElementById("gallery-container");
-
 
 // ===== ALEX Modal Setup =====
 
@@ -35,7 +34,6 @@ async function createImages() {
       image.likes_count || 0,
       image.comments.length || 0
     );
-
   }
 }
 
@@ -43,6 +41,8 @@ function createImage(src, id, initialLikes, initialComments) {
   const card = document.createElement("div");
   card.classList.add("gallery-item");
   card.setAttribute("data-image-id", id);
+  // NEW: Set initial like state on the DOM element
+  card.dataset.isLiked = "false";
 
   const image = document.createElement("img");
   image.src = src;
@@ -94,44 +94,80 @@ function createImage(src, id, initialLikes, initialComments) {
 
   //Laura: Add event listener to like button to show the like count number.
   // Change to solid heart icon when clicked
-  let isLiked = false;
+  // UPDATED: Like logic now uses card.dataset.isLiked as the source of truth
   likeButton.addEventListener("click", async () => {
-    const previousState = isLiked;
-    isLiked = !isLiked;
+    const wasLiked = card.dataset.isLiked === "true";
+    const isLiked = !wasLiked; // This is the *new* state we are moving to
+    const current = parseInt(likeCountNum.textContent || "0", 10) || 0;
 
-    // Show/hide icons based on like state
+    // 1. Optimistic UI update (Card + Modal)
+    card.dataset.isLiked = String(isLiked); // Update source of truth
     if (isLiked) {
+      // --- Card UI ---
       solidHeartIcon.style.display = "block";
       likeIcon.style.display = "none";
+      likeCountNum.textContent = String(current + 1);
 
-      try {
-        const like = await postLike(id);
-        const current = parseInt(likeCountNum.textContent || "0", 10) || 0;
-        likeCountNum.textContent = String(current + 1);
-        console.log("LIKED:", like);
-      } catch (error) {
-        isLiked = previousState;
-        solidHeartIcon.style.display = "none";
-        likeIcon.style.display = "block";
-        console.error("Error liking:", error);
-        alert("Failed to like image. Please try again.");
+      // --- Modal UI (if open) ---
+      if (currentImageId === id && modal.style.display === "flex") {
+        modalLikeIconSolid.style.display = "block";
+        modalLikeIcon.style.display = "none";
+        modalLikeCount.textContent = likeCountNum.textContent;
       }
     } else {
+      // --- Card UI ---
       solidHeartIcon.style.display = "none";
       likeIcon.style.display = "block";
+      likeCountNum.textContent = String(current - 1);
 
-      try {
-        const unlike = await deleteLike(id);
-        const current = parseInt(likeCountNum.textContent || "0", 10) || 0;
-        likeCountNum.textContent = String(current - 1);
-        console.log("UNLIKED:", unlike);
-      } catch (error) {
-        isLiked = previousState;
+      // --- Modal UI (if open) ---
+      if (currentImageId === id && modal.style.display === "flex") {
+        modalLikeIconSolid.style.display = "none";
+        modalLikeIcon.style.display = "block";
+        modalLikeCount.textContent = likeCountNum.textContent;
+      }
+    }
+
+    // 2. API Call
+    try {
+      if (isLiked) {
+        await postLike(id);
+        console.log("LIKED");
+      } else {
+        await deleteLike(id);
+        console.log("UNLIKED");
+      }
+    } catch (error) {
+      // 3. Revert on failure
+      card.dataset.isLiked = String(wasLiked); // Revert source of truth
+
+      if (wasLiked) {
+        // --- Card UI ---
         solidHeartIcon.style.display = "block";
         likeIcon.style.display = "none";
-        console.error("Error unliking:", error);
-        alert("Failed to unlike image. Please try again.");
+        likeCountNum.textContent = String(current); // Revert to original count
+
+        // --- Modal UI (if open) ---
+        if (currentImageId === id && modal.style.display === "flex") {
+          modalLikeIconSolid.style.display = "block";
+          modalLikeIcon.style.display = "none";
+          modalLikeCount.textContent = likeCountNum.textContent;
+        }
+      } else {
+        // --- Card UI ---
+        solidHeartIcon.style.display = "none";
+        likeIcon.style.display = "block";
+        likeCountNum.textContent = String(current); // Revert to original count
+
+        // --- Modal UI (if open) ---
+        if (currentImageId === id && modal.style.display === "flex") {
+          modalLikeIconSolid.style.display = "none";
+          modalLikeIcon.style.display = "block";
+          modalLikeCount.textContent = likeCountNum.textContent;
+        }
       }
+      console.error("Error liking/unliking:", error);
+      alert("Failed to update like. Please try again.");
     }
   });
 
@@ -174,11 +210,18 @@ let currentImageId = null;
 const modal = document.createElement("div");
 modal.id = "image-modal";
 modal.style.display = "none";
+// NEW: Added modal-like-button HTML
 modal.innerHTML = `
   <div class="modal-backdrop"></div>
   <div class="modal-content fade-in">
     <button id="modal-close" class="modal-close">×</button>    
     <img id="modal-image" src="" alt="Large View" />    
+    
+    <button id="modal-like-button" class="like-comment-button">
+      <span id="modal-like-count" class="like-count">0</span>
+      <img id="modal-like-icon" src="./src/icons/like.svg" alt="like-icon" class="like-icon">
+      <img id="modal-like-icon-solid" src="./src/icons/like-filled.svg" alt="solid-heart-icon" class="solid-heart-icon" style="display: none;">
+    </button>
     <div id="modal-comments" class="modal-comments"></div>
     <form id="comment-form" class="comment-form">
       <input type="text" id="commenter-name" placeholder="Your name" required />
@@ -203,6 +246,12 @@ const commentForm = document.getElementById("comment-form");
 const commenterNameInput = document.getElementById("commenter-name");
 const commentTextInput = document.getElementById("comment-text");
 
+// NEW: Get references to new modal like button elements
+const modalLikeButton = document.getElementById("modal-like-button");
+const modalLikeCount = document.getElementById("modal-like-count");
+const modalLikeIcon = document.getElementById("modal-like-icon");
+const modalLikeIconSolid = document.getElementById("modal-like-icon-solid");
+
 export async function openImageModal(index, id, gallery) {
   currentImageIndex = index;
   currentImageId = id;
@@ -215,6 +264,23 @@ export async function openImageModal(index, id, gallery) {
   // Reset form
   commenterNameInput.value = "";
   commentTextInput.value = "";
+
+  // NEW: Sync modal like button state with the card's state
+  const card = document.querySelector(`[data-image-id="${id}"]`);
+  if (card) {
+    const isCurrentlyLiked = card.dataset.isLiked === "true";
+    const currentLikes =
+      card.querySelector(".like-count")?.textContent || "0";
+
+    modalLikeCount.textContent = currentLikes;
+    if (isCurrentlyLiked) {
+      modalLikeIconSolid.style.display = "block";
+      modalLikeIcon.style.display = "none";
+    } else {
+      modalLikeIconSolid.style.display = "none";
+      modalLikeIcon.style.display = "block";
+    }
+  }
 
   // ALEX Load comments for this image
   await loadComments(id);
@@ -231,8 +297,8 @@ async function loadComments(id) {
   const commentsHTML =
     reversed.length > 0
       ? reversed
-        .map((c) => `<p><b>${c.commenter_name}:</b> ${c.comment}</p>`)
-        .join("")
+          .map((c) => `<p><b>${c.commenter_name}:</b> ${c.comment}</p>`)
+          .join("")
       : "<p>No comments yet.</p>";
 
   modalComments.innerHTML = `<h3>Comments</h3>${commentsHTML}`;
@@ -259,6 +325,7 @@ modal
   .addEventListener("click", () => (modal.style.display = "none"));
 
 document.addEventListener("keydown", (e) => {
+  if (modal.style.display !== "flex") return; // Only run if modal is open
   if (e.key === "Escape") modal.style.display = "none";
   if (e.key === "ArrowRight") btnNext.click();
   if (e.key === "ArrowLeft") btnPrev.click();
@@ -267,6 +334,20 @@ document.addEventListener("keydown", (e) => {
 // ALEX Zoom on click
 modalImg.addEventListener("click", () => {
   modalImg.classList.toggle("zoomed");
+});
+
+// NEW: Add event listener for the MODAL like button
+// This simply "clicks" the hidden card's like button,
+// which triggers the main logic and ensures state is synced.
+modalLikeButton.addEventListener("click", () => {
+  if (!currentImageId) return;
+  const card = document.querySelector(`[data-image-id="${currentImageId}"]`);
+  if (!card) return;
+
+  const cardLikeButton = card.querySelector(".like-comment-button"); // The first one is the like button
+  if (cardLikeButton) {
+    cardLikeButton.click();
+  }
 });
 
 // ALEX >>>> Update comment count everywhere for an image
@@ -306,16 +387,7 @@ commentForm.addEventListener("submit", async (e) => {
     commentTextInput.value = "";
 
     // Show comment count number
-    const currentCard = document.querySelector(
-      `[data-image-id="${currentImageId}"]`
-    );
-    if (currentCard) {
-      const commentCountEl = currentCard.querySelector(".comment-count");
-      if (commentCountEl) {
-        const current = parseInt(commentCountEl.textContent || "0", 10) || 0;
-        commentCountEl.textContent = String(current + 1);
-      }
-    }
+    updateCommentCount(currentImageId, 1);
   } catch (error) {
     console.error("Error posting comment:", error);
     alert("Failed to post comment. Please try again.");
@@ -326,4 +398,3 @@ commentForm.addEventListener("submit", async (e) => {
 createImages();
 
 createTopLikes();
-
