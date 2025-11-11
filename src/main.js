@@ -9,14 +9,17 @@ import {
   getAllPages,
 } from "./api.js";
 import {
-  updateStats,
+  createAllStats,
   createTotalLikes,
   createTotalComments,
   createTotalImages,
 } from "./stats.js";
 import { createTopLikes } from "./top-likes.js";
 
+createAllStats();
+export const totalPages = await getAllPages()
 const container = document.getElementById("gallery-container");
+
 
 // ===== ALEX Modal Setup =====
 
@@ -33,7 +36,6 @@ async function createImages() {
       image.comments.length || 0
     );
 
-    console.log(image.image_url);
   }
 }
 
@@ -226,8 +228,8 @@ async function loadComments(id) {
   const commentsHTML =
     reversed.length > 0
       ? reversed
-          .map((c) => `<p><b>${c.commenter_name}:</b> ${c.comment}</p>`)
-          .join("")
+        .map((c) => `<p><b>${c.commenter_name}:</b> ${c.comment}</p>`)
+        .join("")
       : "<p>No comments yet.</p>";
 
   modalComments.innerHTML = `<h3>Comments</h3>${commentsHTML}`;
@@ -316,7 +318,9 @@ commentForm.addEventListener("submit", async (e) => {
     alert("Failed to post comment. Please try again.");
   }
 });
+// await allPagesImages();
 
 createImages();
-updateStats();
+
 createTopLikes();
+

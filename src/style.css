@@ -130,6 +130,7 @@ h1 { font-size: 3em; }
   gap: 20px;
   color: white;
   flex: 1;
+  cursor: pointer;
   position: relative;
   border-radius: 8px;
   position: relative;
