@@ -6,6 +6,10 @@
   --color-skeleton: linear-gradient(90deg, #d5d5d5 40%, rgb(237, 237, 237), #d5d5d5 60%) right / 300% 100%;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @keyframes skeleton-loading {
   to {
     background-position: left;
@@ -595,3 +599,50 @@ h3 { font-size: 1.3em; font-weight: 400; }
     padding: 12px;
   }
 }
+
+/* ===================== BACK TO TOP BUTTON (PURE CSS) ===================== */
+
+/* Back to top button base styles */
+#back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  z-index: 9999;
+  opacity: 0.8;
+}
+
+/* Hover effect */
+#back-to-top:hover {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #000;
+  transform: translateY(-4px);
+  opacity: 1;
+}
+
+/* Responsive BAck to top btn */
+@media (max-width: 600px) {
+  #back-to-top {
+    width: 42px;
+    height: 42px;
+    bottom: 20px;
+    right: 20px;
+    font-size: 18px;
+  }
+}
+
