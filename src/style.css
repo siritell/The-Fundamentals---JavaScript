@@ -14,6 +14,8 @@
 
 h1 { font-size: 3em; }
 
+h3 { font-size: 1.3em; font-weight: 400; } 
+
 /* Skeleton Loading */
 .stat-box.loading::after,
 .top-like.loading::after,
@@ -51,7 +53,7 @@ h1 { font-size: 3em; }
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
 }
 
 .header-section {
@@ -111,7 +113,7 @@ h1 { font-size: 3em; }
 .top-likes-container {
   width: 100%;
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 20px auto;
 }
 
 .top-likes {
