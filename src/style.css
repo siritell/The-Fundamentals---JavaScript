@@ -498,6 +498,44 @@ h1 { font-size: 3em; }
   transform: scale(1.12);
 }
 
+/***** MODAL LIKE BTN***/
+#modal-like-button {
+  /* Position over the image */
+  position: absolute;
+  top: 20px;
+  right: 60px; /* Adjust to not overlap the close button */
+  z-index: 15;
+
+  /* Style it */
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 20px;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: white;
+}
+
+#modal-like-button:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+#modal-like-button .like-count {
+  color: white;
+  margin-right: 6px;
+  font-weight: bold;
+}
+
+#modal-like-button .like-icon,
+#modal-like-button .solid-heart-icon {
+  width: 20px;
+  height: 20px;
+  filter: invert(1); /* Makes the SVG white */
+}
+
+/*************MODAL LIKE BTN ENDS **********/
+
 /* Animation */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(30px); }
