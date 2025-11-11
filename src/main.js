@@ -38,12 +38,14 @@ async function createImages(page = 1) {
     );
   }
 
-  // Update button visibility after loading
+  // Laura: Hide load-morebutton when its the end of the gallery.
   if (currentPage >= totalPages) {
     loadMoreButton.style.display = "none";
   }
 }
 createImages(1);
+
+// Laura: event listener for load-more-button functionality
 loadMoreButton.addEventListener("click", async () => {
   if (currentPage < totalPages) {
     currentPage++;
@@ -51,6 +53,7 @@ loadMoreButton.addEventListener("click", async () => {
   }
 });
 
+// ===== ALEX createImage function =====
 function createImage(src, id, initialLikes, initialComments) {
   const card = document.createElement("div");
   card.classList.add("gallery-item");
