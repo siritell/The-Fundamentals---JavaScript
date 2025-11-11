@@ -363,14 +363,14 @@ h1 { font-size: 3em; }
   width: 65%;          
   height: 100%;        
   object-fit: cover;
-  cursor: zoom-in;
-  transition: transform 0.25s ease;
+  /*cursor: zoom-in;
+  transition: transform 0.25s ease;*/
 }
 
-.modal-content img.zoomed {
+/*.modal-content img.zoomed {
   transform: scale(1.65);
   cursor: zoom-out;
-}
+}*/
 
 /* modal nav*/
 .modal-nav-cont {
