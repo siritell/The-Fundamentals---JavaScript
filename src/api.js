@@ -72,7 +72,7 @@ export const deleteLike = async (id) => {
     const response = await fetch(url, { method: "DELETE" });
 
     if (!response.ok) {
-      throw new Error(`${response.status}: Couldn't delete like`);
+      throw new Error(`${response.status}: Couldn't undo like`);
     }
 
     const likeData = await response.json();
