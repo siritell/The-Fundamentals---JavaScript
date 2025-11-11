@@ -1,6 +1,6 @@
 const baseURL = "https://image-feed-api.vercel.app/api/images";
 
-export const getAllImages = async (page = 1) => {
+export const getAllImages = async (page) => {
   try {
     const url = `${baseURL}?page=${page}`;
     const response = await fetch(url);
